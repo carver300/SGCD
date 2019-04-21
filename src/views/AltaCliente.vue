@@ -3,7 +3,7 @@
     <v-form>
         <v-container>    
             <v-layout>
-                <h1>Alta Cliente</h1>    
+                <h1>Alta Paciente</h1>    
             </v-layout>    
         </v-container>
 

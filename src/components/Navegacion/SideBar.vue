@@ -19,9 +19,9 @@
       text-xs-center
       >
         <v-avatar
-        tile="true"
+        tile="false"
         size="200px"
-        color="grey lighten-4"
+        color="white"
         >
           <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
         </v-avatar>
@@ -43,7 +43,7 @@
         <v-list-tile-content>
           <v-list-tile-title>
             <h3>
-              DashBoard
+              Inicio
             </h3>
           </v-list-tile-title>
         </v-list-tile-content>
