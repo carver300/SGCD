@@ -98,7 +98,7 @@
             </v-layout>
 
             <v-layout justify-center>
-                <v-btn depressed large color="primary"> Generar Alta</v-btn>
+                <v-btn color="primary"> Generar Alta</v-btn>
             </v-layout>
         </v-container>
     </v-form>

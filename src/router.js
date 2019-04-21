@@ -20,7 +20,7 @@ export default new Router({
         {
           path: 'DashBoard',
           name: 'DashBoard',
-          component: () => import(/* webpackChunkName: "about" */ './views/DashBoard.vue')
+          component: () => import(/* webpackChunkName: "about" */ './views/ContenidoPrincipal/DashBoard.vue')
         },
         {
           path: 'AltaCliente',
@@ -36,7 +36,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/ContenidoPrincipal/Home.vue')
     },
     
   ]

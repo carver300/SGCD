@@ -100,14 +100,9 @@ export default {
       return {
         drawer: true,
         menuPacientes: [
-        {icon:'desktop_windows',text:'Alta Paciente',route:'/Home/AltaCliente'},
-        {icon:'desktop_windows',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
-        {icon:'desktop_windows',text:'Modificar Informacion',route:'/Home/MenuPacientes'},
-        {icon:'desktop_windows',text:'Servicios',route:'/Home/MenuPacientes'},
-       /* ['Consultar', 'insert_drive_file'],
-        ['Actualizar', 'update'],
-        ['Eliminar', 'delete']*/
-      ]
+          {icon:'desktop_windows',text:'Alta Paciente',route:'/Home/AltaCliente'},
+          {icon:'desktop_windows',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
+        ]
 
       }
     }
