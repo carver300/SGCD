@@ -1,6 +1,8 @@
 <template>
  <v-app>
-   <LoginComponent/>
+   <v-scale-transition origin="center center">
+     <LoginComponent/>
+   </v-scale-transition>
  </v-app>
 </template>
 

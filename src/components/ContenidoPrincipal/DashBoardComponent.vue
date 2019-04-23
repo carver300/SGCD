@@ -77,7 +77,10 @@
                 <CitasDelDia/>
             </v-flex>
         </v-layout>
-
+        
+        <v-layout row wrap>
+            <api/>
+        </v-layout>
 
     </v-container>
 </template>
@@ -86,6 +89,7 @@
 
 const Servicios = () => import('@/components/ContenidoPrincipal/ServiciosDashBoard.vue')
 const CitasDelDia = () => import('@/components/ContenidoPrincipal/CitasDelDiaDashBoard.vue')
+
 
 export default {
     name:'DashBoard',
@@ -97,7 +101,7 @@ export default {
     }),
     components:{
         Servicios,
-        CitasDelDia
+        CitasDelDia,
     }
 
 }

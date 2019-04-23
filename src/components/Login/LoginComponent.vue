@@ -3,7 +3,7 @@
         <v-container fluid fill-height>
             <v-layout align-center justify-center>
                 <v-flex lg2>
-                    <v-card class="elevation-5">
+                    <v-card class="elevation-5" style="border-radius:20px;">
                         <v-card-title primary-title>
                             <v-layout justify-center>
                                <v-avatar

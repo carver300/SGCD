@@ -1,5 +1,9 @@
 <template>
-    <v-toolbar app fixed clipped-left>
+    <v-toolbar
+      app
+      clipped
+      class="elevation-0"
+    >
         <v-spacer></v-spacer> 
         <v-btn icon>
             <v-icon>power_settings_new</v-icon>
@@ -8,7 +12,7 @@
         <v-avatar
           tile="true"
           size="40px"
-          color="grey lighten-4"
+          color="white lighten-4"
         >
           <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
         </v-avatar>

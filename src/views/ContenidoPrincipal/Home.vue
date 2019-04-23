@@ -4,9 +4,9 @@
         <NavBar/>
         <v-content>   
             <v-container>
-                <v-fade-transition mode="out-in">
+                <v-scroll-x-transition origin="right left" mode="out-in">
                     <router-view></router-view>
-                </v-fade-transition>
+                </v-scroll-x-transition>
             </v-container>  
         </v-content>
     </v-app>

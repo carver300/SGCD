@@ -1,39 +1,46 @@
 <template>
  <v-navigation-drawer
-  clipped
-  fixed
-  app
-  stateless
-  value="true"
+    app
+    stateless
+    value="true"
+    class="elevation-10"
   >
-    <v-layout 
-    pt-4
-    pb-4
+    <v-layout
+      justify-start
+      align-center
+      ml-5
     >
       <v-flex
-      pt-4
-      pb-4
-      align-center
-      justify-center
-      layout
-      text-xs-center
+        pt-4
+        pb-4
+        xs3
       >
         <v-avatar
-        tile="false"
-        size="200px"
-        color="white"
+          tile="true"
+          size="50px"
+          color="white"
         >
           <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
         </v-avatar>
       </v-flex>
+
+      <v-flex
+        xs2
+      >
+        <h2>Usuario</h2>
+      </v-flex>
     </v-layout>
 
-    <v-divider></v-divider>
+    <v-layout justify-center>
+      <v-flex xs10>
+        <v-divider></v-divider>
+      </v-flex>
+    </v-layout>
 
-    <v-list dense>
+    <v-list style="margin-left:20px;">
       <v-list-tile
-      router
-      to="/Home/DashBoard"
+        router
+        to="/Home/DashBoard"
       >
         <v-list-tile-action>
           <v-icon>
@@ -42,52 +49,37 @@
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>
-            <h3>
-              Inicio
-            </h3>
+            Inicio
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      
+
+      <v-layout justify-center style="margin-left:-20px;">
+        <v-flex xs10>
+          <v-divider></v-divider>
+        </v-flex>
+      </v-layout>
+
       <v-subheader>
-        <h4 style="color:black;">Gestion de la informacion</h4>
+        <h4>Pacientes</h4>
       </v-subheader>
-
-      <v-list-group
-      prepend-icon="account_circle"
-      value="true">
-
-      <template v-slot:activator>
-          <v-list-tile>
+      <v-list-tile
+        v-for="opcion in menuPacientes"
+        :key="opcion.text"
+        router
+        :to="opcion.route"
+      >
+        <v-list-tile-action>
+          <v-icon>
+            {{opcion.icon}}
+          </v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
           <v-list-tile-title>
-            <h3>Pacientes</h3>
+            {{opcion.text}}
           </v-list-tile-title>
-        </v-list-tile>
-      </template>
-        
-        <v-list>
-          <v-list-tile
-          v-for="opcion in menuPacientes"
-          :key="opcion.text"
-          router
-          :to="opcion.route"
-          >
-            <v-list-tile-action>
-              <v-icon>
-                {{opcion.icon}}
-              </v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>
-                <h3>
-                  {{opcion.text}}
-                </h3>
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-
-      </v-list-group>
+        </v-list-tile-content>
+      </v-list-tile>
 
     </v-list> 
   </v-navigation-drawer>
