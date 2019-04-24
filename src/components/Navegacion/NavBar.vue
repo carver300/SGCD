@@ -2,7 +2,7 @@
     <v-toolbar
       app
       clipped
-      class="elevation-0"
+      class="elevation-0 white"
     >
         <v-spacer></v-spacer> 
         <v-btn icon>

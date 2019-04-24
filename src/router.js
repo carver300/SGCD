@@ -23,9 +23,9 @@ export default new Router({
           component: () => import(/* webpackChunkName: "about" */ './views/ContenidoPrincipal/DashBoard.vue')
         },
         {
-          path: 'AltaCliente',
-          name: 'AltaCliente',
-          component: () => import('./views/AltaCliente.vue')
+          path: 'AltaPaciente',
+          name: 'AltaPaciente',
+          component: () => import('./views/Pacientes/AltaPaciente.vue')
         },
         {
           path:'ConsultaInformacion',

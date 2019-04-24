@@ -3,9 +3,9 @@
         <SideBar/>
         <NavBar/>
         <v-content>   
-            <v-container>
+            <v-container class="grey lighten-4">
                 <v-scroll-x-transition origin="right left" mode="out-in">
-                    <router-view></router-view>
+                    <router-view class="grey lighten-4"></router-view>
                 </v-scroll-x-transition>
             </v-container>  
         </v-content>

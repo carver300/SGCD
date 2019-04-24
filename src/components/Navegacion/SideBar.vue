@@ -1,9 +1,10 @@
 <template>
  <v-navigation-drawer
     app
+    dark
     stateless
     value="true"
-    class="elevation-10"
+    class="elevation-20"
   >
     <v-layout
       justify-start
@@ -18,7 +19,7 @@
         <v-avatar
           tile="true"
           size="50px"
-          color="white"
+          dark
         >
           <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
         </v-avatar>
@@ -27,7 +28,7 @@
       <v-flex
         xs2
       >
-        <h2>Usuario</h2>
+        <h2 style="color: white;">Usuario</h2>
       </v-flex>
     </v-layout>
 
@@ -92,7 +93,7 @@ export default {
       return {
         drawer: true,
         menuPacientes: [
-          {icon:'desktop_windows',text:'Alta Paciente',route:'/Home/AltaCliente'},
+          {icon:'desktop_windows',text:'Alta Paciente',route:'/Home/AltaPaciente'},
           {icon:'desktop_windows',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
         ]
 
