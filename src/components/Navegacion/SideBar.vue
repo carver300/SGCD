@@ -45,7 +45,7 @@
       >
         <v-list-tile-action>
           <v-icon>
-            desktop_windows
+            home
           </v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
@@ -93,8 +93,8 @@ export default {
       return {
         drawer: true,
         menuPacientes: [
-          {icon:'desktop_windows',text:'Alta Paciente',route:'/Home/AltaPaciente'},
-          {icon:'desktop_windows',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
+          {icon:'add_box',text:'Alta Paciente',route:'/Home/AltaPaciente'},
+          {icon:'ballot',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
         ]
 
       }

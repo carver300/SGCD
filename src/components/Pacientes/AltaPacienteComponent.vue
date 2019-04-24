@@ -120,7 +120,7 @@
                         <v-btn 
                             color="success"
                         >
-                        <v-icon dark>cloud_upload</v-icon> 
+                        <v-icon dark>input</v-icon> 
                         Generar Alta
                         </v-btn>
                     </v-flex>
