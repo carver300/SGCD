@@ -1,4 +1,4 @@
-# vuetify
+# SGCD Frontend
 
 ## Project setup
 ```
