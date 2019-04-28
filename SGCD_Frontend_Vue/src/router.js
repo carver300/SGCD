@@ -31,6 +31,11 @@ export default new Router({
           path:'ConsultaInformacion',
           name:'ConsultaInformacion',
           component: () => import('./views/Pacientes/ConsultarInformacionPaciente.vue')
+        },
+        {
+          path:'AltaServicio',
+          name:'AltaServicio',
+          component: () => import('./views/Servicios/AltaServicio.vue')
         }
       ],
       // route level code-splitting

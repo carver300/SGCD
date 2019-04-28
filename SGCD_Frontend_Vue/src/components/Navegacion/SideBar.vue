@@ -81,6 +81,66 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
+      
+      <v-layout justify-center style="margin-left:-20px;">
+        <v-flex xs10>
+          <v-divider></v-divider>
+        </v-flex>
+      </v-layout>
+
+      <v-subheader>
+        <h4>Servicios</h4>
+      </v-subheader>
+      <v-list-tile
+        v-for="opcion in menuServicios"
+        :key="opcion.text"
+        router
+        :to="opcion.route"
+      >
+        <v-list-tile-action>
+          <v-icon>
+            {{opcion.icon}}
+          </v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>
+            {{opcion.text}}
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+
+      <v-layout justify-center style="margin-left:-20px;">
+        <v-flex xs10>
+          <v-divider></v-divider>
+        </v-flex>
+      </v-layout>
+
+      <v-subheader>
+        <h4>Citas</h4>
+      </v-subheader>
+      <v-list-tile
+        v-for="opcion in menuCitas"
+        :key="opcion.text"
+        router
+        :to="opcion.route"
+      >
+        <v-list-tile-action>
+          <v-icon>
+            {{opcion.icon}}
+          </v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>
+            {{opcion.text}}
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+
+      <v-layout justify-center style="margin-left:-20px;">
+        <v-flex xs10>
+          <v-divider></v-divider>
+        </v-flex>
+      </v-layout>
 
     </v-list> 
   </v-navigation-drawer>
@@ -95,6 +155,14 @@ export default {
         menuPacientes: [
           {icon:'add_box',text:'Alta Paciente',route:'/Home/AltaPaciente'},
           {icon:'ballot',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
+        ],
+        menuServicios:[
+          {icon:'add_box',text:'Alta Servicio',route:'/Home/AltaServicio'},
+          {icon:'add_box',text:'Servicios'}
+        ],
+        menuCitas:[
+          {icon:'add_box',text:'Agendar Cita'},
+          {icon:'add_box',text:'Listado de citas'}
         ]
 
       }
