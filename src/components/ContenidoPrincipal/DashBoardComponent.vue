@@ -79,14 +79,21 @@
         </v-layout>
         
         <v-layout row wrap>
-            <api/>
+            <v-btn color="success" @click="traerDatos()">text</v-btn>
+        </v-layout>
+        
+        <v-layout>
+            {{data}}
         </v-layout>
 
+        <v-layout row wrap>
+            <v-btn color="success" @click="recorrerRespuesta()">text</v-btn>
+        </v-layout>
+        
     </v-container>
 </template>
 
 <script>
-
 const Servicios = () => import('@/components/ContenidoPrincipal/ServiciosDashBoard.vue')
 const CitasDelDia = () => import('@/components/ContenidoPrincipal/CitasDelDiaDashBoard.vue')
 
@@ -98,11 +105,12 @@ export default {
         valorLimpiezas:50,
         valorRecinas:75,
         valorExtracciones:40,
+        data:[],
+        valores:[]
     }),
     components:{
         Servicios,
         CitasDelDia,
-    }
-
+    },
 }
 </script>
