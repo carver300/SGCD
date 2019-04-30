@@ -158,7 +158,7 @@ export default {
         ],
         menuServicios:[
           {icon:'add_box',text:'Alta Servicio',route:'/Home/AltaServicio'},
-          {icon:'add_box',text:'Servicios'}
+          {icon:'add_box',text:'Detalle Servicios', route:'/Home/DetalleServicios'}
         ],
         menuCitas:[
           {icon:'add_box',text:'Agendar Cita'},
