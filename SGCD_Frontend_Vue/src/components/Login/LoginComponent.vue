@@ -1,36 +1,36 @@
 <template>
-    <v-content>
+    <v-content style="background-color:grey;">
         <v-container fluid fill-height>
             <v-layout align-center justify-center>
-                <v-flex lg2>
-                    <v-card class="elevation-5" style="border-radius:20px;">
+                <v-flex lg3 md2 sm2>
+                    <v-card dark class="elevation-0" style="border-radius:20px; background-color:black;">
                         <v-card-title primary-title>
                             <v-layout justify-center>
-                               <v-avatar
-                                   size="200px"
-                                   color="gray"
-                               >
-                                   <img src="http://www.sclance.com/pngs/user-icon-png/user_icon_png_1449226.png" alt="alt">
-                               </v-avatar>    
+                                <v-flex xs1 lg1>
+                                    <v-icon dark>lock</v-icon>
+                                </v-flex>
+                               <v-flex xs1 lg2>
+                                   <h2>Login</h2>
+                               </v-flex>    
                             </v-layout>
                         </v-card-title>
 
                         <v-card-text>
-                            <v-layout row wrap>
-                                <v-flex xs11>
-                                    <h3 style="margin-left:35px;">Usuario</h3>
+                            <v-layout row wrap justify-center>
+                                <v-flex xs11 lg9>
+                                    <h3>Usuario</h3>
                                     <v-text-field
                                         v-model="usuario"
-                                        prepend-icon="person"
+                                        prepend-inner-icon="person"
                                         outline
                                         type="text"
                                     ></v-text-field>
                                 </v-flex>
-                                <v-flex xs11>
-                                    <h3 style="margin-left:35px;">Contrasena</h3>
+                                <v-flex xs11 lg9>
+                                    <h3>Contrasena</h3>
                                     <v-text-field
                                         v-model="contrasena"
-                                        prepend-icon="lock"
+                                        prepend-inner-icon="lock"
                                         outline
                                         type="password"
                                     ></v-text-field>

@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app dark>
         <SideBar/>
         <NavBar/>
         <v-content>   
@@ -12,7 +12,11 @@
     </v-app>
 </template>
 
-
+<style>
+    body{
+        background-color: black;
+    }
+</style>
 <script>
 
 const SideBar = () => import('@/components/Navegacion/SideBar.vue')

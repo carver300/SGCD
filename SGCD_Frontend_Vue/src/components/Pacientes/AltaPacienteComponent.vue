@@ -1,32 +1,32 @@
 <template>
     <v-container class="">
-        <v-card class="white" id="contenedor">
+        <v-card  id="contenedor">
             <v-card-title primary-title>
                 <h2>Alta Paciente</h2>
             </v-card-title>
             <v-card-text>
                 <v-layout justify-center pb-3>
-                    <v-flex xs12>
+                    <v-flex xs12 lg12>
                         <v-divider></v-divider>
                     </v-flex>
                 </v-layout>
                 <h3>Datos Personales</h3>
                 <v-layout pt-3>
-                    <v-flex xs2>
+                    <v-flex xs3 lg3>
                         <h4>Nombre</h4>
                         <v-text-field
                             v-model="nombre"
                             outline
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs2 ml-3>
+                    <v-flex xs2 lg3 ml-3>
                         <h4>Apellido Paterno</h4>
                         <v-text-field
                             v-model="apellidoPaterno"
                             outline
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs2 ml-3>
+                    <v-flex xs2 lg3 ml-3>
                         <h4>Apellido Materno</h4>
                         <v-text-field
                             v-model="apellidoMaterno"
@@ -35,7 +35,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout>
-                    <v-flex xs2>
+                    <v-flex xs2 lg3>
                         <h4>Sexo</h4>
                         <v-select
                             outline
@@ -45,7 +45,7 @@
                             label="Sexo del paciente"
                         ></v-select>
                     </v-flex>
-                    <v-flex xs1 ml-3>
+                    <v-flex xs1 lg2 ml-3>
                         <h4>Edad</h4>
                         <v-text-field
                             v-model="edad"
@@ -86,7 +86,7 @@
                             v-model="colonia"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs1 ml-3>
+                    <v-flex xs1 lg2 ml-3>
                         <h4>Apartado Postal</h4>
                         <v-text-field
                             outline
@@ -95,7 +95,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout>
-                    <v-flex xs2>
+                    <v-flex xs2 lg2>
                         <h4>Telefono Celular/Casa</h4>
                         <v-text-field
                             outline
