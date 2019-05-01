@@ -46,7 +46,7 @@
                                 edit
                             </v-icon>
                             <v-icon
-                                @click="deleteItem(props.item)"
+                                @click="eliminarPaciente(props.item)"
                             >
                                 delete
                             </v-icon>

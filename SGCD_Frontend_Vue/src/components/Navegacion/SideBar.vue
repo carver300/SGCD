@@ -1,45 +1,22 @@
 <template>
  <v-navigation-drawer
+    fixed
+    clipped
     app
-    dark
     stateless
     value="true"
     class="elevation-20"
   >
-    <v-layout
-      justify-start
-      align-center
-      ml-5
-    >
-      <v-flex
-        pt-4
-        pb-4
-        xs3
-      >
-        <v-avatar
-          tile="true"
-          size="50px"
-          dark
-        >
-          <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
-        </v-avatar>
-      </v-flex>
-
-      <v-flex
-        xs2
-      >
-        <h2 style="color: white;">Usuario</h2>
-      </v-flex>
-    </v-layout>
-
-    <v-layout justify-center>
+    
+    <v-layout justify-center class="dividers">
       <v-flex xs10>
         <v-divider></v-divider>
       </v-flex>
     </v-layout>
 
-    <v-list style="margin-left:20px;">
+    <v-list>
       <v-list-tile
+        class="tile"
         router
         to="/Home/DashBoard"
       >
@@ -50,12 +27,12 @@
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>
-            Inicio
+            General
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-layout justify-center style="margin-left:-20px;">
+      <v-layout justify-center class="dividers">
         <v-flex xs10>
           <v-divider></v-divider>
         </v-flex>
@@ -64,7 +41,9 @@
       <v-subheader>
         <h4>Pacientes</h4>
       </v-subheader>
+      
       <v-list-tile
+        class="tile"
         v-for="opcion in menuPacientes"
         :key="opcion.text"
         router
@@ -81,44 +60,31 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      
-      <v-layout justify-center style="margin-left:-20px;">
-        <v-flex xs10>
-          <v-divider></v-divider>
-        </v-flex>
-      </v-layout>
-
+  
       <v-subheader>
         <h4>Servicios</h4>
       </v-subheader>
       <v-list-tile
+        class="tile"
         v-for="opcion in menuServicios"
         :key="opcion.text"
         router
         :to="opcion.route"
       >
-        <v-list-tile-action>
+        <v-list-tile-action class="tileTitle">
           <v-icon>
             {{opcion.icon}}
           </v-icon>
         </v-list-tile-action>
-        <v-list-tile-content>
+        <v-list-tile-content >
           <v-list-tile-title>
             {{opcion.text}}
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-layout justify-center style="margin-left:-20px;">
-        <v-flex xs10>
-          <v-divider></v-divider>
-        </v-flex>
-      </v-layout>
-
-      <v-subheader>
-        <h4>Citas</h4>
-      </v-subheader>
       <v-list-tile
+        class="tile"
         v-for="opcion in menuCitas"
         :key="opcion.text"
         router
@@ -136,7 +102,10 @@
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-layout justify-center style="margin-left:-20px;">
+      <v-subheader>
+        <h4>Ventas</h4>
+      </v-subheader>
+      <v-layout justify-center class="dividers">
         <v-flex xs10>
           <v-divider></v-divider>
         </v-flex>
@@ -146,6 +115,25 @@
   </v-navigation-drawer>
 </template>
 
+
+<style>
+  .tile {
+    margin: 5px;
+    border-radius: 6px;
+  }
+  .tile:hover {
+    background: #B3E5FC;
+  }
+  .tile:active {
+    background: #29B6F6;
+  }
+  .tileTitle:active {
+    background: red;
+  }
+  .dividers{
+    margin-left:-20px;
+  }
+</style>
 <script>
 export default {
     name:'SideBar',
@@ -157,12 +145,12 @@ export default {
           {icon:'ballot',text:'Consulta Informacion',route:'/Home/ConsultaInformacion'},
         ],
         menuServicios:[
-          {icon:'add_box',text:'Alta Servicio',route:'/Home/AltaServicio'},
+          {icon:'add_box',text:'Registrar Servicio',route:'/Home/AltaServicio'},
           {icon:'add_box',text:'Detalle Servicios', route:'/Home/DetalleServicios'}
         ],
         menuCitas:[
           {icon:'add_box',text:'Agendar Cita'},
-          {icon:'add_box',text:'Listado de citas'}
+          {icon:'add_box',text:'Citas'}
         ]
 
       }
