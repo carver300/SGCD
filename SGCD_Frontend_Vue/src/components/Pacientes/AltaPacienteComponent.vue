@@ -137,7 +137,7 @@
             <v-dialog v-model="dialog" persistent max-width="500">
             <v-card>
                 <v-card-title class="headline">
-                    Atencion!
+                   {{encabezado}}
                 </v-card-title>
                 <v-card-text>
                     {{mensaje}}.
@@ -199,6 +199,7 @@ const axios = require('axios');
         correo:'',
         dialog:false,
         mensaje:'',
+        encabezado:'',
         edadRules: [
         v => !!v || 'No puede estar vacio',
         v => v < 130 || 'Edad invalida'
@@ -227,7 +228,7 @@ const axios = require('axios');
             }).then(response => {
                 this.mostrarDialogMensaje(response)
             }).catch(error => {
-                alert('Error '+error)
+                this.mostrarDialogMensaje(error)
             })
         }
     }

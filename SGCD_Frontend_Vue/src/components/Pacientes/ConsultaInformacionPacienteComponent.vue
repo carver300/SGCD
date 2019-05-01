@@ -1,26 +1,32 @@
 <template>
     <v-container>
-        <v-card class="elevation-10" id="contenedor">
-            <v-card-title primary-title>
-                <h2>Informacion de pacientes</h2>
+        <v-card class="elevation-10 borderRedondos">
+            <v-card-title primary-title class="colorTituloTarjeta elevation-10">
+                <h2 class="letraBlanca">Informacion de pacientes</h2>
                 <v-spacer></v-spacer>
-                <v-text-field
-                    outline
-                    v-model="search"
-                    append-icon="search"
-                    label="Search"
-                    single-line
-                    hide-details
-                ></v-text-field>
+                
             </v-card-title>
 
-            <v-card-text>
+            <v-card-text >
+                <v-layout pt-3 pb-3>
+                    <v-flex lg4>
+                        <h3>Filtrar</h3>
+                        <v-text-field
+                            outline
+                            v-model="search"
+                            append-icon="search"
+                            label="Escriba una palabra clave"
+                            single-line
+                            hide-details
+                        >
+                        </v-text-field>
+                    </v-flex>
+                </v-layout>
                 <v-data-table
-                id="contenedor"
                 :search="search"
                 :headers="headers"
                 :items="valoresTabla"
-                class="elevation-0"
+                class="bordesRedondos"
                 hide-actions
                 
                 >
@@ -65,15 +71,14 @@
 
 
         <v-dialog v-model="dialog" max-width="1000px" id="contenedor">
-        <v-card>
-            <v-card-title>
+        <v-card class="bordesRedondos">
+            <v-card-title class="colorTituloTarjeta elevation-10">
                 <v-layout >
-                    <span class="headline">Editar Informacion</span>
+                    <span class="headline letraBlanca">Editar Informacion</span>
                 </v-layout>
             </v-card-title>
 
             <v-card-text>
-                <v-divider></v-divider>
                 <h3>Datos Personales</h3>
                 <v-layout justify-start pt-3>
                     <v-flex xs2>
@@ -139,7 +144,7 @@
                         </v-textarea>
                     </v-flex>
                 </v-layout>
-                <v-divider></v-divider>
+                
                 <h3>Informacion de contacto</h3>
                 <v-layout>
                     <v-flex xs3>
@@ -188,29 +193,53 @@
                 </v-layout>
             </v-card-text>
 
-          <v-card-actions>
+          <v-card-actions class="elevation-5">
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" flat @click="cerrarModal()">Cancel</v-btn>
             <v-btn color="blue darken-1" flat @click="editarInformacion()">Save</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
+
+      <v-layout row justify-center>
+            <v-dialog v-model="dialogRespuesta" persistent max-width="500">
+            <v-card>
+                <v-card-title class="headline">
+                   {{encabezado}}
+                </v-card-title>
+                <v-card-text>
+                    {{mensaje}}.
+                </v-card-text>
+                <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" flat @click="dialogRespuesta = false">Disagree</v-btn>
+                <v-btn color="green darken-1" flat @click="dialogRespuesta = false">Agree</v-btn>
+                </v-card-actions>
+            </v-card>
+            </v-dialog>
+        </v-layout>
        
     </v-container>
 </template>
 
 <style>
-    #contenedor{
-            border-style:solid;
-            border-radius: 3px;
-            border-width: 1px;
-    }
     .titulos{
         font-size: 30px;
     }
     table.v-table thead tr th {
         font-size: 20px;
         
+    }
+    .colorTituloTarjeta{
+        background-color: #0091EA;
+    }
+    .bordesRedondos{
+        border-style:solid;
+        border-radius: 5px;
+        border-width: 1.5px;
+    }
+    .letraBlanca{
+        color: white;
     }
 
 </style>
@@ -253,9 +282,26 @@ export default {
                 correo:'',
                 alergia:''
             },
+             objetoOriginal:{
+                id_paciente:'',
+                nombre:'',
+                apepaterno:'',
+                apematerno:'',
+                sexo:'',
+                edad:'',
+                calle:'',
+                colonia:'',
+                codigopostal:'',
+                telefono:'',
+                correo:'',
+                alergia:''
+            },
             index:-1,
             search: '',
-            dialog:false
+            dialog:false,
+            dialogRespuesta:false,
+            encabezado:'',
+            mensaje:''
         }
     },
     mounted: function(){
@@ -269,6 +315,14 @@ export default {
             }).catch(error => {
                 alert('Error '+ error)
             })
+        },
+
+        close () {
+            this.dialog = false
+            setTimeout(() => {
+            this.objetoPaciente = Object.assign({}, this.objetoOriginal)
+            this.editedIndex = -1
+            }, 300)
         },
 
         abrirDialogEditar(item){
@@ -294,17 +348,23 @@ export default {
                 alergia:this.objetoPaciente.alergia
             })
             .then(response =>{
-                alert('Parece que funciono')
+                this.dialogRespuesta = true;
+                this.encabezado ='Atencion'
+                this.mensaje ='Se edito la informacion del paciente'
                 if (this.index > -1) {
-                    Object.assign(this.valoresTabla[this.index], this.objetoPaciente)
+                    Object.assign(this.valoresTabla[this.index], this.objetoPaciente);
                 } 
                 else {
-                    this.valoresTabla.push(this.objetoPaciente)
+                    this.valoresTabla.push(this.objetoPaciente);
                 }
                 this.close()
             }).catch(error => {
                 alert('No funciono '+ error)
             })
+        },
+
+        eliminarPaciente(){
+            
         },
 
         cerrarModal(){
