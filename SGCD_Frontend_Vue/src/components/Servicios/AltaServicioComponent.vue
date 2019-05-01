@@ -14,7 +14,7 @@
                 </v-layout>
                 <h3>Datos del servicio</h3>
                 <v-layout pt-3>
-                    <v-flex xs2 lg3>
+                    <v-flex xs2>
                         <h4>Nombre</h4>
                         <v-text-field
                             outline
@@ -22,7 +22,7 @@
                     </v-flex>
                 </v-layout>
                 <v-layout>
-                    <v-flex xs3 lg4>
+                    <v-flex xs3>
                         <h4>Descripcion</h4>
                         <v-textarea
                             label="Descripcion del servicio"
@@ -31,13 +31,13 @@
                     </v-flex>
                 </v-layout>
                 <v-layout>
-                    <v-flex x1 lg2>
+                    <v-flex xs1>
                         <h4>Precio</h4>
                         <v-text-field
                             outline
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs2 lg3 ml-3>
+                    <v-flex xs2 ml-3>
                         <h4>Duracion estimada</h4>
                         <v-text-field
                             label="Tiempo de duracion"
