@@ -7,37 +7,36 @@
                 </v-layout>
             </v-card-title>
             <v-card-text>
-                <h3>Datos del servicio</h3>
+                <h2>Datos del servicio</h2>
                 <v-layout pt-3>
-                    <v-flex xs2>
-                        <h4>Nombre</h4>
+                    <v-flex lg3 xl2>
+                        <h4>Nombre Servicio</h4>
                         <v-text-field
                             outline
                         ></v-text-field>
                     </v-flex>
-                </v-layout>
-                <v-layout>
-                    <v-flex xs3>
-                        <h4>Descripcion</h4>
-                        <v-textarea
-                            label="Descripcion del servicio"
-                            outline
-                        ></v-textarea>
-                    </v-flex>
-                </v-layout>
-                <v-layout>
-                    <v-flex xs1>
+                    <v-flex lg2 xl2 ml-3>
                         <h4>Precio</h4>
                         <v-text-field
                             outline
+                            label="$$"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex xs2 ml-3>
+                    <v-flex lg3 xl2 ml-3>
                         <h4>Duracion estimada</h4>
                         <v-text-field
                             label="Tiempo de duracion"
                             outline
                         ></v-text-field>
+                    </v-flex>
+                </v-layout>
+                <v-layout>
+                    <v-flex lg5 x3>
+                        <h4>Descripcion</h4>
+                        <v-textarea
+                            label="Descripcion del servicio"
+                            outline
+                        ></v-textarea>
                     </v-flex>
                 </v-layout>
                 <v-layout justify-center pb-3>

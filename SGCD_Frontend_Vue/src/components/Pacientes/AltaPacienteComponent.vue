@@ -11,17 +11,17 @@
             <v-card-text>
                 <h2>Datos Personales</h2>
                 <v-layout pt-3>
-                    <v-flex lg3>
+                    <v-flex lg4 xl3>
                         <h4>Nombre</h4>
                         <v-text-field
                             v-model="nombre"
                             outline
                             label="Nombre del paciente"
-                                        hint="For example, flowers or used cars"
+                            hint="For example, flowers or used cars"
 
                         ></v-text-field>
                     </v-flex>
-                    <v-flex lg3 ml-3>
+                    <v-flex lg4 xl3 ml-3>
                         <h4>Apellido Paterno</h4>
                         <v-text-field
                             v-model="apellidoPaterno"
@@ -29,7 +29,7 @@
                             label="Apellido paterno del paciente"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex lg3 ml-3>
+                    <v-flex lg4 xl3 ml-3>
                         <h4>Apellido Materno</h4>
                         <v-text-field
                             v-model="apellidoMaterno"
@@ -49,14 +49,14 @@
                             label="Seleccione una opcion"
                         ></v-select>
                     </v-flex>
-                    <v-flex lg2 ml-3>
+                    <v-flex lg3 xl2 ml-3>
                         <h4>Edad</h4>
                         <v-text-field
                             v-model="edad"
                             :rules="edadRules"
                             type="number"
                             outline
-                            label="Digite la edad del paciente"
+                            label="Digite la edad"
                             counter="3"
                         ></v-text-field>
                     </v-flex>
@@ -75,7 +75,7 @@
                 
                 <h2>Domicilio</h2>
                 <v-layout pt-3>
-                    <v-flex lg3>
+                    <v-flex lg4 xl3>
                         <h4>Calle</h4>
                         <v-text-field
                             outline
@@ -83,7 +83,7 @@
                             v-model="calle"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex lg3 ml-3>
+                    <v-flex lg4 xl3 ml-3>
                         <h4>Colonia</h4>
                         <v-text-field
                             outline

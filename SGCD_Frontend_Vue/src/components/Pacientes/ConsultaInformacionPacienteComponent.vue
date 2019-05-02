@@ -8,7 +8,7 @@
             </v-card-title>
 
             <v-card-text >
-                <v-layout pt-3 pb-3>
+                <v-layout pb-3 align-center>
                     <v-flex lg4>
                         <h3>Filtrar</h3>
                         <v-text-field
@@ -27,7 +27,7 @@
                 :headers="headers"
                 :items="valoresTabla"
                 class="bordesRedondos"
-                hide-actions
+                
                 
                 >
                     <template v-slot:items="props">
@@ -301,7 +301,8 @@ export default {
             dialog:false,
             dialogRespuesta:false,
             encabezado:'',
-            mensaje:''
+            mensaje:'',
+            radioButtonGroup:1
         }
     },
     mounted: function(){

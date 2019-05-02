@@ -111,6 +111,11 @@
         </v-flex>
       </v-layout>
 
+      <v-layout row wrap>
+        <v-flex xs1>
+          <v-btn color="success" >barra</v-btn>
+        </v-flex>
+      </v-layout>
     </v-list> 
   </v-navigation-drawer>
 </template>
