@@ -1,7 +1,7 @@
 <template>
     <v-container>
-        <v-card class="elevation-10 borderRedondos">
-            <v-card-title primary-title class="colorTituloTarjeta elevation-10">
+        <v-card class="elevation-10 bordesRedondos">
+            <v-card-title primary-title class="colorTituloTarjeta elevation-10 ">
                 <h2 class="letraBlanca">Informacion de pacientes</h2>
                 <v-spacer></v-spacer>
                 
@@ -60,7 +60,7 @@
                     </template>
                     <template v-slot:no-results>
                         <v-alert :value="true" color="error" icon="warning">
-                            Your search for "{{ search }}" found no results.
+                            No hay resultados para "{{ search }}" dentro de los datos.
                         </v-alert>
                     </template>
                 </v-data-table>
@@ -363,8 +363,17 @@ export default {
             })
         },
 
-        eliminarPaciente(){
-            
+        eliminarPaciente(item){
+            const index = this.valoresTabla.indexOf(item)
+            this.objetoPaciente = Object.assign({}, item)
+            axios.get('https://localhost:5001/api/paciente/Eliminar/'+this.objetoPaciente.id_paciente
+            )
+            .then(response => {
+                this.valoresTabla.splice(index, 1)
+            })
+            .catch(error => {
+                alert(error+' '+this.objetoPaciente.id_paciente)
+            })
         },
 
         cerrarModal(){

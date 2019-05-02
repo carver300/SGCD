@@ -1,17 +1,12 @@
 <template>
     <v-container>
-        <v-card class="elevation-10">
-            <v-card-title primary-title>
+        <v-card class="elevation-10 bordesRedondos">
+            <v-card-title primary-title class="colorTituloTarjeta">
                 <v-layout>
-                    <h2>Alta Servicio</h2>
+                    <h2 class="letraBlanca">Alta Servicio</h2>
                 </v-layout>
             </v-card-title>
             <v-card-text>
-                <v-layout justify-center pb-3>
-                    <v-flex xs12>
-                        <v-divider></v-divider>
-                    </v-flex>
-                </v-layout>
                 <h3>Datos del servicio</h3>
                 <v-layout pt-3>
                     <v-flex xs2>
@@ -65,6 +60,26 @@
 
     </v-container>
 </template>
+
+
+<style>
+
+    .bordesRedondos{
+        border-style:solid;
+        border-radius: 5px;
+        border-width: 1.5px;
+    }
+    .titulos{
+        font-size: 30px;
+    }
+    .colorTituloTarjeta{
+        background-color: #0091EA;
+    }
+    .letraBlanca{
+        color: white;
+    }
+</style>
+
 
 <script>
 export default {
