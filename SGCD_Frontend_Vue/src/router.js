@@ -41,6 +41,11 @@ export default new Router({
           path:'DetalleServicios',
           name:'DetalleServicios',
           component: () => import('./views/Servicios/DetalleServicios.vue')
+        },
+        {
+          path:'AgendarCita',
+          name:'AgendarCita',
+          component: () => import('./views/Citas/AgendarCita.vue')
         }
       ],
       // route level code-splitting

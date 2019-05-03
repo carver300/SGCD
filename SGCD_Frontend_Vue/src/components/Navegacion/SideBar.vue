@@ -1,26 +1,32 @@
 <template>
  <v-navigation-drawer
     fixed
-    clipped
     app
     stateless
     value="true"
     class="elevation-20"
   >
-    
-    <v-layout justify-center class="dividers">
-      <v-flex xs10>
-        <v-divider></v-divider>
-      </v-flex>
-    </v-layout>
 
     <v-list>
+
+      <v-layout justify-center pt-3 pb-3>
+        <v-flex xl6>
+          <h2>MilosDentalCare</h2>
+        </v-flex>
+      </v-layout>
+
+      <v-layout justify-center>
+        <v-flex xl11 lg11>
+          <v-divider></v-divider>
+        </v-flex>
+      </v-layout>
+
       <v-list-tile
         class="tile"
         router
         to="/Home/DashBoard"
       >
-        <v-list-tile-action>
+        <v-list-tile-action class="action">
           <v-icon>
             home
           </v-icon>
@@ -32,8 +38,8 @@
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-layout justify-center class="dividers">
-        <v-flex xs10>
+      <v-layout justify-center>
+        <v-flex xl11>
           <v-divider></v-divider>
         </v-flex>
       </v-layout>
@@ -65,13 +71,14 @@
         <h4>Servicios</h4>
       </v-subheader>
       <v-list-tile
+        id="tilecolor"
         class="tile"
         v-for="opcion in menuServicios"
         :key="opcion.text"
         router
         :to="opcion.route"
       >
-        <v-list-tile-action class="tileTitle">
+        <v-list-tile-action>
           <v-icon>
             {{opcion.icon}}
           </v-icon>
@@ -105,8 +112,8 @@
       <v-subheader>
         <h4>Ventas</h4>
       </v-subheader>
-      <v-layout justify-center class="dividers">
-        <v-flex xs10>
+      <v-layout justify-center>
+        <v-flex xl11>
           <v-divider></v-divider>
         </v-flex>
       </v-layout>
@@ -133,10 +140,10 @@
     background: #29B6F6;
   }
   .tileTitle:active {
-    background: red;
+    background: green;
   }
-  .dividers{
-    margin-left:-20px;
+  list-tile.tile{
+    background: yellow;  
   }
 </style>
 <script>
@@ -154,7 +161,7 @@ export default {
           {icon:'add_box',text:'Detalle Servicios', route:'/Home/DetalleServicios'}
         ],
         menuCitas:[
-          {icon:'add_box',text:'Agendar Cita'},
+          {icon:'add_box',text:'Agendar Cita',route:'/Home/AgendarCita'},
           {icon:'add_box',text:'Citas'}
         ]
 

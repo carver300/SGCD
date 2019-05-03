@@ -1,21 +1,10 @@
 <template>
     <v-toolbar
-      class="toolbarColor elevation-5"
+      class="toolbarColor"
       app
       fixed
-      clipped-left
       color="#0091EA"
     >
-        <v-layout
-          justify-start
-          align-center
-          ml-5
-        >
-          <v-flex >
-            <h2 class="letraBlanca">MilosDentalCare</h2>            
-          </v-flex>
-        </v-layout>
-
         <v-spacer></v-spacer> 
         
         <v-btn icon>

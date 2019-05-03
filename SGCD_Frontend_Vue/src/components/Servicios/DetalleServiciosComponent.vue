@@ -2,29 +2,37 @@
     <v-container>
         <v-layout>
             <v-flex xs12>
-                <v-card class="elevation-10" id="contenedor">
-                    <v-card-title primary-title>
-                        <h2>Servicios</h2>
-                        <v-spacer></v-spacer>
-                        <v-text-field
-                            outline
-                            v-model="search"
-                            append-icon="search"
-                            label="Search"
-                            single-line
-                            hide-details
-                        ></v-text-field>
+                <v-card class="elevation-10 bordesRedondos">
+                    <v-card-title primary-title class="colorTituloTarjeta">
+                        <h2 class="letraBlanca">Servicios</h2>
                     </v-card-title>
 
                     <v-card-text>
-                        <v-data-table
-                        id="contenedor"
-                        :search="search"
-                        :headers="headers"
-                        :items="valoresTabla"
-                        class="elevation-0"
-                        hide-actions
                         
+                        <v-layout pt-2 pb-2>
+                            <v-flex xl3>
+                                <h3>Filtrar</h3>
+                                <v-text-field
+                                    outline
+                                    v-model="search"
+                                    append-icon="search"
+                                    label="Search"
+                                    single-line
+                                    hint="Introduzca una palabra clave"
+                                ></v-text-field>
+                            </v-flex>
+                        </v-layout>
+
+                        <v-layout justify-center pb-1>
+                            <v-flex xl3>
+                                <h3>Informacion de servicios dados de alta</h3>
+                            </v-flex>
+                        </v-layout>
+                        <v-data-table
+                            :search="search"
+                            :headers="headers"
+                            :items="valoresTabla"
+                            class="elevation-0 bordesRedondos"
                         >
                             <template v-slot:items="props">
                                 <td class="text-xs-left"><h4>{{ props.item.id_paciente }}</h4></td>
@@ -111,16 +119,23 @@
 </template>
 
 <style>
-    #contenedor{
-        border-style:solid;
-        border-radius: 3px;
-        border-width: 1px;
-    }
     .titulos{
         font-size: 30px;
     }
     table.v-table thead tr th {
         font-size: 20px;
+        
+    }
+    .colorTituloTarjeta{
+        background-color: #0091EA;
+    }
+    .bordesRedondos{
+        border-style:solid;
+        border-radius: 5px;
+        border-width: 1.5px;
+    }
+    .letraBlanca{
+        color: white;
     }
 </style>
 

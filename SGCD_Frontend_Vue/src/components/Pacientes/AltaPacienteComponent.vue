@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-card class="bordesRedondos">
-            <v-card-title primary-title class="colorTituloTarjeta elevation-5">
+            <v-card-title primary-title class="colorTituloTarjeta elevation-10">
                 <v-layout >
                     <v-flex lg4>
                         <h2 class="letraBlanca">Registro de paciente</h2>
@@ -11,62 +11,70 @@
             <v-card-text>
                 <h2>Datos Personales</h2>
                 <v-layout pt-3>
-                    <v-flex lg4 xl3>
+                    <v-flex lg4 xl2>
                         <h4>Nombre</h4>
                         <v-text-field
                             v-model="nombre"
+                            single-line
                             outline
-                            label="Nombre del paciente"
-                            hint="For example, flowers or used cars"
+                            prepend-inner-icon="person"
+                            hint="No usar abreviaciones"
 
                         ></v-text-field>
                     </v-flex>
-                    <v-flex lg4 xl3 ml-3>
+                    <v-flex lg4 xl2 ml-3>
                         <h4>Apellido Paterno</h4>
                         <v-text-field
                             v-model="apellidoPaterno"
                             outline
-                            label="Apellido paterno del paciente"
+                            single-line
+                            prepend-inner-icon="person"
+                            hint="No usar abreviaciones"
                         ></v-text-field>
                     </v-flex>
-                    <v-flex lg4 xl3 ml-3>
+                    <v-flex lg4 xl2 ml-3>
                         <h4>Apellido Materno</h4>
                         <v-text-field
                             v-model="apellidoMaterno"
+                            single-line
                             outline
-                            label="Apellido materno del paciente"
+                            prepend-inner-icon="person"
+                            hint="No usar abreviaciones"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout>
-                    <v-flex lg3>
+                    <v-flex lg3 xl2>
                         <h4>Sexo</h4>
                         <v-select
                             outline
+                            single-line
                             :items="sexos"
                             item-text="texto"
                             v-model="sexo"
-                            label="Seleccione una opcion"
+                            prepend-inner-icon="perm_identity"
+                            label="Sexo del paciente"
                         ></v-select>
                     </v-flex>
-                    <v-flex lg3 xl2 ml-3>
+                    <v-flex lg2 xl1 ml-3>
                         <h4>Edad</h4>
                         <v-text-field
+                            single-line
                             v-model="edad"
-                            :rules="edadRules"
                             type="number"
                             outline
-                            label="Digite la edad"
-                            counter="3"
+                            prepend-inner-icon="calendar_today"
+                            hint="Edad del paciente"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
                 <v-layout>
-                    <v-flex lg6>
+                    <v-flex lg6 xl4>
                         <h4>Alergias</h4>
                         <v-textarea
                             outline
-                            label="Alergias a medicamentos o similares"
+                            single-line
+                            hint="Alergias a medicamentos, por ejemplo:paracetamol o anestecia"
                             v-model="alergia"
                         >
                         </v-textarea>
@@ -79,25 +87,30 @@
                         <h4>Calle</h4>
                         <v-text-field
                             outline
-                            label="Calle, avenida o poste"
+                            single-line
                             v-model="calle"
+                            prepend-inner-icon="streetview"
+                            hint="Calle o avenida"
                         ></v-text-field>
                     </v-flex>
                     <v-flex lg4 xl3 ml-3>
                         <h4>Colonia</h4>
                         <v-text-field
                             outline
+                            single-line
                             v-model="colonia"
-                            label="Colonia o fraccionamiento"
+                            prepend-inner-icon="map"
+                            hint="Colonia o fraccionamiento"
                         ></v-text-field>
                     </v-flex>
                     <v-flex lg2 ml-3>
                         <h4>Apartado Postal</h4>
                         <v-text-field
                             outline
+                            single-line
                             type="number"
                             v-model="codigoPostal"
-                            label="Codigo postal"
+                            hint="Codigo postal"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -106,16 +119,20 @@
                         <h4>Telefono</h4>
                         <v-text-field
                             outline
+                            single-line
                             v-model="telefono"
-                            label="Celular o fijo"
+                            prepend-inner-icon="contact_phone"
+                            hint="Puede ser de casa o celular"
                         ></v-text-field>
                     </v-flex>
                     <v-flex xs3 ml-3>
                         <h4>Correo electronico</h4>
                         <v-text-field
                             outline
+                            single-line
                             v-model="correo"
-                            label="Solo en caso de tener"
+                            prepend-inner-icon="contact_mail"
+                            hint="Por ejemplo: example@gmail.com"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -200,10 +217,6 @@ const axios = require('axios');
         dialog:false,
         mensaje:'',
         encabezado:'',
-        edadRules: [
-        v => !!v || 'No puede estar vacio',
-        v => v < 130 || 'Edad invalida'
-      ],
                         
         }
     },

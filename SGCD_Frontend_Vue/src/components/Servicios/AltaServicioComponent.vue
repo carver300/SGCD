@@ -12,21 +12,26 @@
                     <v-flex lg3 xl2>
                         <h4>Nombre Servicio</h4>
                         <v-text-field
+                            single-line
                             outline
+                            hint="Nombre del servicio"
                         ></v-text-field>
                     </v-flex>
                     <v-flex lg2 xl2 ml-3>
                         <h4>Precio</h4>
                         <v-text-field
                             outline
-                            label="$$"
+                            single-line
+                            prepend-inner-icon="attach_money"
+                            hint="Precio del servicio"
                         ></v-text-field>
                     </v-flex>
                     <v-flex lg3 xl2 ml-3>
                         <h4>Duracion estimada</h4>
                         <v-text-field
-                            label="Tiempo de duracion"
+                            single-line
                             outline
+                            hint="Tiempo estimado de duracion"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -34,8 +39,9 @@
                     <v-flex lg5 x3>
                         <h4>Descripcion</h4>
                         <v-textarea
-                            label="Descripcion del servicio"
+                            single-line
                             outline
+                            hint="Descriciop del servicio"
                         ></v-textarea>
                     </v-flex>
                 </v-layout>
@@ -47,10 +53,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-layout pb-3 ml-3>
-                    <v-btn color="success">
-                        <v-icon dark>
-                            input
-                        </v-icon>
+                    <v-btn color="primary">
                         Guardar Servicio
                     </v-btn>
                 </v-layout>
