@@ -35,11 +35,11 @@
                             class="elevation-0 bordesRedondos"
                         >
                             <template v-slot:items="props">
-                                <td class="text-xs-left"><h4>{{ props.item.id_paciente }}</h4></td>
+                                <td class="text-xs-left"><h4>{{ props.item.id_servicio }}</h4></td>
                                 <td class="text-xs-left"><h4>{{ props.item.nombre }}</h4></td>
-                                <td class="text-xs-left"><h4>{{ props.item.apepaterno }}</h4></td>
-                                <td class="text-xs-left"><h4>{{ props.item.apematerno }}</h4></td>
-                                <td class="text-xs-left"><h4>{{ props.item.sexo }}</h4></td>
+                                <td class="text-xs-left"><h4>{{ props.item.descripcion }}</h4></td>
+                                <td class="text-xs-left"><h4>{{ props.item.precio }}</h4></td>
+                                <td class="text-xs-left"><h4>{{ props.item.tiempoestimado }}</h4></td>
                                 
                                 <td class="justify-left layout ">
                                     <v-icon
@@ -140,6 +140,8 @@
 </style>
 
 <script>
+const axios = require('axios');
+
 export default {
     name:'DetalleServicios',
     data(){
@@ -163,6 +165,20 @@ export default {
             search: '',
             dialog:false
         }
+    },
+    mounted: function(){
+        this.llenarTablaServicios()
+    },
+    methods:{
+        llenarTablaServicios(){
+            axios.get('https://localhost:5001/api/servicio/VerServicios')
+            .then(response =>{
+                alert(response)
+                this.valoresTabla = response.data
+            }).catch(error => {
+                alert('Error '+ error)
+            })
+        },
     }
 }
 </script>

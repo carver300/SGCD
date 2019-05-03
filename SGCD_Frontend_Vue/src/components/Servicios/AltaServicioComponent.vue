@@ -12,6 +12,7 @@
                     <v-flex lg3 xl2>
                         <h4>Nombre Servicio</h4>
                         <v-text-field
+                            v-model="nombre"
                             single-line
                             outline
                             hint="Nombre del servicio"
@@ -20,6 +21,7 @@
                     <v-flex lg2 xl2 ml-3>
                         <h4>Precio</h4>
                         <v-text-field
+                            v-model="precio"
                             outline
                             single-line
                             prepend-inner-icon="attach_money"
@@ -29,6 +31,7 @@
                     <v-flex lg3 xl2 ml-3>
                         <h4>Duracion estimada</h4>
                         <v-text-field
+                            v-model="duracion"
                             single-line
                             outline
                             hint="Tiempo estimado de duracion"
@@ -39,6 +42,7 @@
                     <v-flex lg5 x3>
                         <h4>Descripcion</h4>
                         <v-textarea
+                            v-model="descripcion"
                             single-line
                             outline
                             hint="Descriciop del servicio"
@@ -53,7 +57,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-layout pb-3 ml-3>
-                    <v-btn color="primary">
+                    <v-btn color="primary" @click="guardarServicio()">
                         Guardar Servicio
                     </v-btn>
                 </v-layout>
@@ -84,8 +88,35 @@
 
 
 <script>
+
+const axios = require('axios');
+
 export default {
     name:'AltaServicio',
+    data(){
+        return{
+            nombre:'',
+            descripcion:'',
+            precio:'',
+            duracion:''
+        }
+    },
+    methods:{
+        guardarServicio(){
+             axios.post('https://localhost:5001/api/servicio/Agregar',{
+                 nombre : this.nombre,
+                 descripcion : this.descripcion,
+                 precio : this.precio,
+                 tiempoestimado : this.duracion
+             })
+             .then(response => {
+                 alert(response)
+             })
+             .catch(error => {
+                 alert(error)
+             })
+        }
+    }
 
 }
 </script>
