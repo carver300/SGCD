@@ -17,6 +17,10 @@
         <i class="nc-icon nc-paper-2"></i>
         <p>Servicios</p>
       </sidebar-link>
+      <sidebar-link to="/admin/AgendarCita">
+        <i class="nc-icon nc-paper-2"></i>
+        <p>Agendar Cita</p>
+      </sidebar-link>
       <sidebar-link to="/admin/user">
         <i class="nc-icon nc-circle-09"></i>
         <p>User Profile</p>

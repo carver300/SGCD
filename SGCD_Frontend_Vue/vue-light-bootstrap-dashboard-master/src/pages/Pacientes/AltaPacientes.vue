@@ -164,7 +164,6 @@ const axios = require('axios');
         },
 
         registrarPaciente () {
-            alert('Your data: ' + JSON.stringify(this.paciente))
            axios.post('https://localhost:5001/api/Paciente/Agregar',this.paciente
            ).then(response => {
                 this.notifyVue('top','center','Registro Exitoso','success')

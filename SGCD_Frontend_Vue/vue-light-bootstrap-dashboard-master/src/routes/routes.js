@@ -77,6 +77,11 @@ const routes = [
         path: 'GeneracionServicios',
         name: 'GeneracionServicios',
         component: () => import('../pages/servicios/GeneracionServicios.vue')
+      },
+      {
+        path: 'AgendarCita',
+        name: 'AgendarCita',
+        component: () => import('../pages/Citas/AgendarCita.vue')
       }
     ]
   },

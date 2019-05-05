@@ -54,9 +54,26 @@
                             <h3 class="title"> Servicios </h3>
                             <p class="category"> Detalle de servicios </p>
                             <hr>
-                             <button type="submit" class="btn btn-info btn-fill" @click="cargarServicios()">
-                                Recargar
-                            </button>
+                            <div class="row">
+                                <div class="col-xl-6 pt-2">
+                                    <h6 class="pb-2">Ultimos 15 servicios</h6>
+                                    <button type="submit" class="btn btn-info btn-fill" @click="cargarServicios()">
+                                        Recargar
+                                    </button>
+                                </div>
+                                <div class="col-xl-2">
+                                  <base-input
+                                    type="text"
+                                    label="Folio servicio"
+                                    v-model="idServicio">
+                                  </base-input>
+                                </div>
+                                <div class="col-xl-3 pt-4">
+                                    <button type="submit" class="btn btn-info btn-fill" @click="buscarServicio()">
+                                      Buscar
+                                    </button>
+                                </div>
+                            </div>
                         </template>
                         <l-table 
                             class="table-hover"
@@ -102,7 +119,8 @@ const axios = require('axios');
                 tiempoestimado:''
             },
             tableColumns:['Id','Nombre','Descripcion','Precio','Duracion','Acciones'],
-            tableData:[]
+            tableData:[],
+            idServicio:''
         }
     },
     methods:{
@@ -119,6 +137,16 @@ const axios = require('axios');
 
         cargarServicios(){
             axios.get('https://localhost:5001/api/servicio/VerServicios')
+            .then(response => {
+                this.tableData = response.data
+            })
+            .catch(error => {
+                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+            })
+        },
+
+        buscarServicio(){
+            axios.get('https://localhost:5001/api/servicio/VerServicios/'+this.idServicio)
             .then(response => {
                 this.tableData = response.data
             })
