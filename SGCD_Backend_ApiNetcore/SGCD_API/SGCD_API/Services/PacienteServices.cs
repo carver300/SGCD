@@ -15,7 +15,7 @@ namespace SGCD_API.Services
         }
         public List<Paciente> verListado()
         {
-            var PacienteBuscado = _PacientesDB.Paciente.ToList();
+            var PacienteBuscado = _PacientesDB.Paciente.Take(15).ToList();
             return PacienteBuscado;
         }
 
@@ -23,12 +23,13 @@ namespace SGCD_API.Services
         {
             try
             {
-                var PacienteBuscado = _PacientesDB.Paciente.Where(x => x.id_paciente == id_paciente).FirstOrDefault();
-                return PacienteBuscado;
+               
+                return _PacientesDB.Paciente.Where(x => x.id_paciente == id_paciente).FirstOrDefault(); ;
             }
             catch (Exception error)
             {
-                return new Paciente();
+               
+               return new Paciente();
             }
         }
 

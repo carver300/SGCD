@@ -20,21 +20,39 @@ namespace SGCD_API.Controllers
         }
         public IActionResult prueba()
         {
-            return Ok("FUNCI0NA LA API");
+            return Ok("Todo bien");
         }
 
         [Route("VerPacientes")]
         [HttpGet]
         public IActionResult verPacientes()
         {
+            try { 
             var resultado = _pacienteServicio.verListado();
             return Ok(resultado);
+            }
+            catch(Exception e)
+            {
+                
+                return NotFound(e.Message);
+            }
         }
         [Route("PacientePorID/{id_paciente}")]
         [HttpGet]
         public IActionResult PacientePorID(int id_paciente)
         {
-            return Ok(_pacienteServicio.ObtenerPorID(id_paciente));
+            try
+            {
+                var resultado = _pacienteServicio.ObtenerPorID(id_paciente);
+                if (resultado == null) {
+                    return Ok("No se encontró el paciente");
+                }
+                return Ok(resultado);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
 
@@ -45,9 +63,9 @@ namespace SGCD_API.Controllers
 
             if (_pacienteServicio.Agregar(PacienteAgregar))
             {
-                return Ok("Agregado");
+                return Ok("Se ha registrado exitosamente al paciente");
             }
-            return BadRequest();
+            return BadRequest("Error al agregar, por favor verifique los campos");
         }
         [Route("Editar")]
         [HttpPut]
@@ -56,9 +74,9 @@ namespace SGCD_API.Controllers
 
             if (_pacienteServicio.Editar(PacienteEditar))
             {
-                return Ok("Editado");
+                return Ok("Se ha registrado exitosamente la cita");
             }
-            return BadRequest();
+            return BadRequest("Error al editar,  por favor verifique los campos");
         }
 
         [Route("Eliminar/{id_paciente}")]
@@ -70,7 +88,7 @@ namespace SGCD_API.Controllers
             {
                 return Ok("Eliminado");
             }
-            return BadRequest();
+            return BadRequest("Se ha dado de baja exitosamente al paciente");
         }
 
 

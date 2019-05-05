@@ -1,0 +1,14 @@
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\bin\Release\netcoreapp2.2\SGCD_API.deps.json
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\bin\Release\netcoreapp2.2\SGCD_API.runtimeconfig.json
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\bin\Release\netcoreapp2.2\SGCD_API.runtimeconfig.dev.json
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\bin\Release\netcoreapp2.2\SGCD_API.dll
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\bin\Release\netcoreapp2.2\SGCD_API.pdb
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.csprojAssemblyReference.cache
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.csproj.CoreCompileInputs.cache
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cache
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cs
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.AssemblyInfoInputs.cache
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.AssemblyInfo.cs
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.dll
+C:\Users\Jorge Nuñez\Desktop\SGCD\SGCD_API\SGCD_API\obj\Release\netcoreapp2.2\SGCD_API.pdb

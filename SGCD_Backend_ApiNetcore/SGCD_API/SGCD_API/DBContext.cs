@@ -14,9 +14,13 @@ namespace SGCD_API
 
         }
         public virtual DbSet<Paciente> Paciente {get; set;}
+        public virtual DbSet<Servicio> Servicio {get; set;}
+        public virtual DbSet<Cita> Cita { get; set; }
         protected override void OnModelCreating(ModelBuilder modelB)
         {
             new Paciente.Map(modelB.Entity<Paciente>());
+            new Servicio.Map(modelB.Entity<Servicio>());
+            new Cita.Map(modelB.Entity<Cita>());
             base.OnModelCreating(modelB);
         }
        

@@ -33,6 +33,11 @@ namespace SGCD_API
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+        
+            services.AddDbContext<DBContext>(opciones => opciones.UseSqlServer("Data Source=DESKTOP-H5VFH1I\\SQLEXPRESS;Initial Catalog=Clinica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Persist Security Info=True;User ID=sa;Password=123456"));
+            services.AddTransient<PacienteServices>();
+            services.AddTransient<ServicioServices>();
+            services.AddTransient<CitaServices>();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
@@ -41,10 +46,6 @@ namespace SGCD_API
                            .AllowAnyOrigin()
                 );
             });
-
-
-            services.AddDbContext<DBContext>(opciones => opciones.UseSqlServer("Data Source=DESKTOP-H5VFH1I\\SQLEXPRESS;Initial Catalog=Clinica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Persist Security Info=True;User ID=sa;Password=123456"));
-            services.AddTransient<PacienteServices>();//Data Source=JJNR27-PC\SQLEXPRESS;Initial Catalog=Clinica;User ID=sa;Password=********;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -66,8 +67,6 @@ namespace SGCD_API
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseCors("AllowSpecificOrigin");
-
-
             app.UseMvc();
         }
     }
