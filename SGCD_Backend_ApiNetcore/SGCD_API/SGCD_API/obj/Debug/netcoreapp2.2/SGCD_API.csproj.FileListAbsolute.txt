@@ -26,3 +26,17 @@ C:\Users\Peñu\Documents\Proyectos\proyecto-ingweb-proint\SGCD\SGCD_Backend_ApiN
 C:\Users\Peñu\Documents\Proyectos\proyecto-ingweb-proint\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
 C:\Users\Peñu\Documents\Proyectos\proyecto-ingweb-proint\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
 C:\Users\Peñu\Documents\Proyectos\proyecto-ingweb-proint\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.deps.json
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.runtimeconfig.json
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.runtimeconfig.dev.json
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.dll
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.pdb
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.csprojAssemblyReference.cache
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.csproj.CoreCompileInputs.cache
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cache
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cs
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfoInputs.cache
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfo.cs
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
+C:\Users\Peñu\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb

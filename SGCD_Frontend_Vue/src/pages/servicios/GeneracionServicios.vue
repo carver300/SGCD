@@ -120,7 +120,13 @@ const axios = require('axios');
             },
             tableColumns:['Id','Nombre','Descripcion','Precio','Duracion','Acciones'],
             tableData:[],
-            idServicio:''
+            idServicio:'',
+            servicio2:{
+                nombre:'',
+                descripcion:'',
+                precio:'',
+                tiempoestimado:''
+            },
         }
     },
     methods:{
@@ -146,9 +152,11 @@ const axios = require('axios');
         },
 
         buscarServicio(){
-            axios.get('https://localhost:5001/api/servicio/VerServicios/'+this.idServicio)
+            axios.get('https://localhost:5001/api/servicio/ServicioPorID/'+this.idServicio)
             .then(response => {
-                this.tableData = response.data
+                this.tableData = []
+                this.servicio2 = response.data      
+                this.tableData.push(this.servicio2)
             })
             .catch(error => {
                 this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')

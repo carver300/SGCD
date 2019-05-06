@@ -9,18 +9,19 @@
                             <div class="col-xl-3">
                                 <base-input
                                     type="text"
-                                    label="Paciente">
+                                    label="Paciente"
+                                    v-model="id_paciente">
                                 </base-input>
                             </div>
                             <div class="col-xl-3 pt-4">
-                                <button type="submit" class="btn btn-info btn-fill">
+                                <button type="submit" class="btn btn-info btn-fill" @click="buscarInformacionPaciente()">
                                     Buscar
                                 </button>
                             </div>
                         </div>
                         <hr>
-                        <h4>Informacion Paciente</h4>
-                        <div class="row">
+                        <h4 v-if="Paciente.id_paciente != ''">Informacion Paciente</h4>
+                        <div v-if="Paciente.id_paciente != ''" class="row">
                             <div class="col-xl-3">
                                 <base-input
                                     type="text"
@@ -46,7 +47,7 @@
                                 </base-input>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" v-if="Paciente.id_paciente != ''">
                             <div class="col-xl-3">
                                 <base-input
                                     type="text"
@@ -64,7 +65,7 @@
                                 </base-input>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" v-if="Paciente.id_paciente != ''">
                             <div class="col-xl-6">
                                 <div class="form-group">
                                     <label>Alergias</label>
@@ -74,21 +75,26 @@
                                             v-model="Paciente.alergia">
                                     </textarea>
                                 </div>
+                                <div class="col-xl-12 pt-3">
+                                    <button class="btn btn-info btn-fill" @click="generarFolio()">
+                                        Obtener Folio
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <hr>
-                        <h3>Detalles de la cita</h3>
-                        <div class="row">
+                        <h3 v-if="folioCita != ''">Detalles de la cita</h3>
+                        <div class="row" v-if="folioCita != ''">
                             <div class="col-xl-3">
                                 <base-input
                                     type="text"
                                     :disabled="true"
                                     label="Folio Cita"
-                                    v-model="Cita.folio">
+                                    v-model="folioCita">
                                 </base-input>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" v-if="folioCita != ''">
                             <div class="col-xl-3">
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Servicio</label>
@@ -131,10 +137,13 @@
 
 
 <script>
+const axios = require('axios');
+
 export default {
     data(){
         return{
             Paciente:{
+                id_paciente:'',
                 nombre:'',
                 apepaterno:'',
                 apematerno:'',
@@ -176,13 +185,42 @@ export default {
                 tiempoestimado:''
             },
             serv:-1,
-            opcion:''
+            opcion:'',
+            id_paciente:'',
+            folioCita:''
         }
     },
     methods:{
-        selectServiciosChange(){
-            
-        }
+        buscarInformacionPaciente(){
+             axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
+            .then(response => {
+                if(response.data.id_paciente > 0){
+                    alert(this.Paciente.nombre)
+                    this.Paciente = response.data
+                }
+                else{
+                    this.notifyVue('top','center','No hay informacion para ese paciente','danger')
+                }
+            })
+            .catch(error => {
+                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+            })
+        },
+
+        generarFolio(){
+            this.folioCita=1
+        },
+
+        notifyVue (verticalAlign, horizontalAlign,mensaje,color) {
+            this.$notifications.notify(
+            {
+                message: mensaje,
+                icon: 'nc-icon nc-app',
+                horizontalAlign: horizontalAlign,
+                verticalAlign: verticalAlign,
+                type: color
+            })
+        },
     }
 }
 </script>
