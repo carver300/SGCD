@@ -41,6 +41,11 @@ const routes = [
         path: 'AgendarCita',
         name: 'AgendarCita',
         component: () => import('../pages/Citas/AgendarCita.vue')
+      },
+      {
+        path: 'HistorialClinico',
+        name: 'InformacionPaciente',
+        component: () => import('../pages/Pacientes/HistorialClinico.vue')
       }
     ]
   },

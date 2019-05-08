@@ -13,6 +13,10 @@
         <i class="nc-icon nc-notes"></i>
         <p>Pacientes</p>
       </sidebar-link>
+      <sidebar-link to="/admin/HistorialClinico">
+        <i class="nc-icon nc-notes"></i>
+        <p>Historial Clinico</p>
+      </sidebar-link>
       <sidebar-link to="/admin/GeneracionServicios">
         <i class="nc-icon nc-paper-2"></i>
         <p>Servicios</p>
