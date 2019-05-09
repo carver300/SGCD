@@ -44,7 +44,7 @@ const routes = [
       },
       {
         path: 'HistorialClinico',
-        name: 'InformacionPaciente',
+        name: 'HistorialClinico',
         component: () => import('../pages/Pacientes/HistorialClinico.vue')
       }
     ]

@@ -4,7 +4,10 @@
             <div class="row">
                 <div class="col-xl-8">
                     <card>
-                        <h3 slot="header">Alta Servicios</h3>
+                        <template slot="header">
+                            <h3>Alta Servicio</h3>
+                            <hr>
+                        </template>
                         <div class="row">
                             <div class="col-xl-3">
                                 <base-input
@@ -53,7 +56,6 @@
                         <template slot="header">
                             <h3 class="title"> Servicios </h3>
                             <p class="category"> Detalle de servicios </p>
-                            <hr>
                             <div class="row">
                                 <div class="col-xl-6 pt-2">
                                     <h6 class="pb-2">Ultimos 15 servicios</h6>
@@ -74,6 +76,7 @@
                                     </button>
                                 </div>
                             </div>
+                            <hr>
                         </template>
                         <l-table 
                             class="table-hover"

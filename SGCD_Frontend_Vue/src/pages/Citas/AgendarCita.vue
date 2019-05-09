@@ -4,9 +4,12 @@
             <div class="row">
                 <div class="col-xl-8">
                     <card>
-                        <h3>Agendar Cita</h3>
+                       <template slot="header">
+                            <h3 class="card-title">Agendar Cita</h3>
+                            <p class="card-category">Captura el numero de paciente para continuar</p>
+                       </template>
                         <div class="row">
-                            <div class="col-xl-3">
+                            <div class="col-xl-2">
                                 <base-input
                                     type="text"
                                     label="Paciente"
@@ -19,7 +22,7 @@
                                 </button>
                             </div>
                         </div>
-                        <hr>
+                        <hr v-if="Paciente.id_paciente != ''">
                         <h4 v-if="Paciente.id_paciente != ''">Informacion Paciente</h4>
                         <div v-if="Paciente.id_paciente != ''" class="row">
                             <div class="col-xl-3">
@@ -82,7 +85,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        <hr v-if="folioCita != ''">
                         <h3 v-if="folioCita != ''">Detalles de la cita</h3>
                         <div class="row" v-if="folioCita != ''">
                             <div class="col-xl-3">
@@ -192,20 +195,24 @@ export default {
     },
     methods:{
         buscarInformacionPaciente(){
-            this.Paciente.id_paciente = 1
-             axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
-            .then(response => {
-                if(response.data.id_paciente > 0){
-                    alert(this.Paciente.nombre)
-                    this.Paciente = response.data
-                }
-                else{
-                    this.notifyVue('top','center','No hay informacion para ese paciente','danger')
-                }
-            })
-            .catch(error => {
-                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
-            })
+            if(this.id_paciente > 0){
+                axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
+                .then(response => {
+                    if(response.data.id_paciente > 0){
+                        alert(this.Paciente.nombre)
+                        this.Paciente = response.data
+                    }
+                    else{
+                        this.notifyVue('top','center','No hay informacion para ese paciente','danger')
+                    }
+                })
+                .catch(error => {
+                    this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+                })
+            }
+            else{
+                this.notifyVue('top','center','No haz capturado un numero de paciente valido','warning')
+            }
         },
 
         generarFolio(){
