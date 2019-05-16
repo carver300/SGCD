@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using SGCD_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SGCD_API.Services
 {
@@ -16,7 +17,7 @@ namespace SGCD_API.Services
             }
             public List<Cita> verListado()
             {
-                var CitaBuscado = _CitasDB.Cita.Include(x=>x.Paciente).Include(x => x.Servicio).OrderByDescending(x => x.id_cita).Take(15).ToList(); ;
+                var CitaBuscado = _CitasDB.Cita.Include(x => x.Paciente).Include(x => x.Servicio).OrderByDescending(x => x.id_cita).Take(15).ToList(); ;
                 return CitaBuscado;
             }
 
@@ -33,17 +34,18 @@ namespace SGCD_API.Services
                 }
             }
 
-            public bool Agregar(Cita CitaAgregar)
+            public String Agregar(Cita CitaAgregar)
             {
                 try
                 {
                     _CitasDB.Cita.Add(CitaAgregar);
                     _CitasDB.SaveChanges();
-                    return true;
+                string id = CitaAgregar.id_cita.ToString();
+                    return id;
                 }
-                catch
+                catch(SqlException e)
                 {
-                    return false;
+                    return e.Message;
                 }
 
             }
@@ -54,6 +56,7 @@ namespace SGCD_API.Services
                 {
                     var cita = _CitasDB.Cita.FirstOrDefault(x => x.id_cita == CitaEditar.id_cita);
                     cita.estatus = CitaEditar.estatus;
+                    cita.observaciones = CitaEditar.observaciones;
                     _CitasDB.SaveChanges();
                     return true;
                 }

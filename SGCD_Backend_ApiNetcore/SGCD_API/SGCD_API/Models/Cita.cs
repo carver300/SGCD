@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +11,25 @@ namespace SGCD_API.Models
     public class Cita
     {
         public int id_cita { get; set; }
+        [Required]
         public int id_paciente { get; set; }
+        [Required]
         public int id_servicio { get; set; }
-        public DateTime fecha { get; set; } 
+        [Required]
+        public DateTime fecha { get; set; }
+        [Required]
         public string hora { get; set; }
+        [Required]
         public string observaciones { get; set; }
         public int estatus { get; set; }
  
         public Paciente Paciente { get; set; }
         public Servicio Servicio { get; set; }
+
+        public Cita()
+        {
+            estatus = 0;
+        }
 
         public class Map
         {

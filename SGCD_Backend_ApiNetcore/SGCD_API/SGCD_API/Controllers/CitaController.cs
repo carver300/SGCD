@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -43,11 +44,17 @@ namespace SGCD_API.Controllers
         public IActionResult Agregar([FromBody] Cita CitaAgregar)
         {
 
-            if (_citaServicio.Agregar(CitaAgregar))
+            try
             {
-                return Ok("Se ha registrado exitosamente la cita");
+                var folio = _citaServicio.Agregar(CitaAgregar);
+                return Ok("Se ha registrado exitosamente la cita: "+ folio);
+
             }
-            return BadRequest();
+            catch(SqlException e)
+            {
+                return Ok("Error al registrar la cita"+e.Message);
+            }
+            
         }
 
         [Route("Editar")]

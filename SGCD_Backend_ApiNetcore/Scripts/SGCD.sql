@@ -26,7 +26,7 @@ estatus int not null
 )
 go
 create table Cita(
-id_cita int IDENTITY(1,1) primary key,
+id_cita int IDENTITY(10000,1) primary key,
 id_paciente int not null,
 id_servicio int not null,
 fecha date not null,
@@ -34,6 +34,14 @@ hora varchar (5) not null,
 estatus int not null,
 observaciones varchar(500) not null
 )
+go
+create table usuario(
+id_usuario int IDENTITY(1,1) primary key,
+usuario varchar(100) unique not null,
+contra varchar (30) not null,
+tipo_usuario int not null
+)
+go
 alter table Cita
 add constraint FK_PacienteCita
 Foreign Key(id_paciente) references Paciente(id_paciente)
