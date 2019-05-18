@@ -26,3 +26,17 @@ C:\Users\Administrador\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API
 C:\Users\Administrador\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
 C:\Users\Administrador\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
 C:\Users\Administrador\Documents\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.deps.json
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.runtimeconfig.json
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.runtimeconfig.dev.json
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.dll
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.pdb
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.csprojAssemblyReference.cache
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.csproj.CoreCompileInputs.cache
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cache
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cs
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfoInputs.cache
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfo.cs
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
+A:\Proyectos\SGCD\SGCD_Backend_ApiNetcore\SGCD_API\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb

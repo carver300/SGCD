@@ -34,7 +34,7 @@ namespace SGCD_API
             });
 
         
-            services.AddDbContext<DBContext>(opciones => opciones.UseSqlServer("Data Source=JJNR27-PC\\SQLEXPRESS;Initial Catalog=Clinica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Persist Security Info=True;User ID=sa;Password=123456"));
+            services.AddDbContext<DBContext>(opciones => opciones.UseSqlServer("Data Source=DESKTOP-H5VFH1I\\SQLEXPRESS;Initial Catalog=Clinica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Persist Security Info=True;User ID=sa;Password=123456"));
             services.AddTransient<PacienteServices>();
             services.AddTransient<ServicioServices>();
             services.AddTransient<CitaServices>();

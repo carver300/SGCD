@@ -12992,11 +12992,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrador\\Documents\\Proyectos\\SGCD\\SGCD_Backend_ApiNetcore\\SGCD_API\\SGCD_API\\SGCD_API.csproj",
+      "projectUniqueName": "A:\\Proyectos\\SGCD\\SGCD_Backend_ApiNetcore\\SGCD_API\\SGCD_API\\SGCD_API.csproj",
       "projectName": "SGCD_API",
-      "projectPath": "C:\\Users\\Administrador\\Documents\\Proyectos\\SGCD\\SGCD_Backend_ApiNetcore\\SGCD_API\\SGCD_API\\SGCD_API.csproj",
+      "projectPath": "A:\\Proyectos\\SGCD\\SGCD_Backend_ApiNetcore\\SGCD_API\\SGCD_API\\SGCD_API.csproj",
       "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrador\\Documents\\Proyectos\\SGCD\\SGCD_Backend_ApiNetcore\\SGCD_API\\SGCD_API\\obj\\",
+      "outputPath": "A:\\Proyectos\\SGCD\\SGCD_Backend_ApiNetcore\\SGCD_API\\SGCD_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
