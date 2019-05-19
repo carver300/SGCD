@@ -164,7 +164,7 @@ const axios = require('axios');
         },
 
         registrarPaciente () {
-           axios.post('https://localhost:5001/api/Paciente/Agregar',this.paciente
+           axios.post('http://sgcd.azurewebsites.net/api/Paciente/Agregar',this.paciente
            ).then(response => {
                 this.notifyVue('top','center','Registro Exitoso','success')
                 this.limpiarCampos()

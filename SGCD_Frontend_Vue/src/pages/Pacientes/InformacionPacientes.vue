@@ -83,7 +83,7 @@
                                                             type="text"
                                                             label="Nombre"
                                                             placeholder="Nombre del paciente"
-                                                            v-model="paciente.nombre">
+                                                            v-model="objetoPaciente.nombre">
                                                         </base-input>
                                                     </div>
                                                     <div class="col-xl-3">
@@ -91,7 +91,7 @@
                                                             type="text"
                                                             label="Apellido Paterno"
                                                             placeholder="Primer apellido"
-                                                            v-model="paciente.apepaterno">
+                                                            v-model="objetoPaciente.apepaterno">
                                                         </base-input>
                                                     </div>
                                                     <div class="col-xl-3">
@@ -99,7 +99,7 @@
                                                             type="text"
                                                             label="Apellido Materno"
                                                             placeholder="Segundo apellido"
-                                                            v-model="paciente.apematerno">
+                                                            v-model="objetoPaciente.apematerno">
                                                         </base-input>
                                                     </div>
                                                 </div>
@@ -109,14 +109,14 @@
                                                             type="text"
                                                             label="Sexo"
                                                             placeholder="Sexo"
-                                                            v-model="paciente.sexo">
+                                                            v-model="objetoPaciente.sexo">
                                                         </base-input>
                                                     </div>
                                                     <div class="col-xl-3">
                                                         <base-input
                                                             type="text"
                                                             label="Edad"
-                                                            v-model="paciente.edad">
+                                                            v-model="objetoPaciente.edad">
                                                         </base-input>
                                                     </div>
                                                 </div>
@@ -126,7 +126,7 @@
                                                             <label>Alergias</label>
                                                             <textarea rows="3" class="form-control border-input"
                                                                     placeholder="Alergia a medicamentos"
-                                                                    v-model="paciente.alergia">
+                                                                    v-model="objetoPaciente.alergia">
                                                             </textarea>
                                                         </div>
                                                     </div>
@@ -136,21 +136,21 @@
                                                         <base-input
                                                             type="text"
                                                             label="Calle"
-                                                            v-model="paciente.calle">
+                                                            v-model="objetoPaciente.calle">
                                                         </base-input>
                                                     </div>
                                                      <div class="col-xl-3">
                                                         <base-input
                                                             type="text"
                                                             label="Colonia"
-                                                            v-model="paciente.colonia">
+                                                            v-model="objetoPaciente.colonia">
                                                         </base-input>
                                                     </div>
                                                      <div class="col-xl-3">
                                                         <base-input
                                                             type="number"
                                                             label="Codigo Postal"
-                                                            v-model="paciente.codigopostal">
+                                                            v-model="objetoPaciente.codigopostal">
                                                         </base-input>
                                                     </div>
                                                 </div>
@@ -212,7 +212,21 @@ export default {
              'Alergia' , 'Calle' , 'Colonia' , 'Codigo Postal' , 'Telefono' , 'Correo Electronico','Acciones'],
             tableData:[],
             showModal:false,
-            paciente:{
+            objetoPaciente:{
+                id_paciente:'',
+                nombre:'',
+                apepaterno:'',
+                apematerno:'',
+                sexo:'',
+                edad:'',
+                calle:'',
+                colonia:'',
+                codigopostal:'',
+                telefono:'',
+                correo:'',
+                alergia:''
+            },
+            objetoPacienteNuevo:{
                 id_paciente:'',
                 nombre:'',
                 apepaterno:'',
@@ -234,7 +248,7 @@ export default {
     },
     methods:{
         llenarTablaPacientes(){
-            axios.get('https://localhost:5001/api/paciente/VerPacientes')
+            axios.get('http://sgcd.azurewebsites.net/api/paciente/VerPacientes')
             .then(response =>{
                 this.tableData = response.data
             }).catch(error => {
@@ -243,24 +257,13 @@ export default {
         },
 
         cargarDatosModal(row){
-            this.paciente.id_paciente = row.id_paciente
-            this.paciente.nombre = row.nombre
-            this.paciente.apepaterno = row.apepaterno
-            this.paciente.apematerno = row.apematerno
-            this.paciente.sexo = row.sexo
-            this.paciente.edad = row.edad
-            this.paciente.calle = row.calle
-            this.paciente.colonia = row.colonia
-            this.paciente.codigopostal = row.codigopostal
-            this.paciente.telefono = row.telefono
-            this.paciente.correo = row.correo
-            this.paciente.alergia = row.alergia
-            
+            this.index = this.tableData.indexOf(row)
+            this.objetoPaciente = Object.assign({},row)
             this.showModal = true
         },
 
         editarInformacion(){
-            axios.put('https://localhost:5001/api/paciente/Editar',this.paciente)
+            axios.put('http://sgcd.azurewebsites.net/api/paciente/Editar',this.objetoPaciente)
             .then(response =>{
                 this.notifyVue('top','center','Se edito la informacion del paciente','success')
                 this.actualizarRowTable()
@@ -271,14 +274,20 @@ export default {
         },
 
         actualizarRowTable(){
-            this.tableData.forEach(element => {
+            if(this.index > -1){
+                Object.assign(this.tableData[this.index],this.objetoPaciente)
+            }
+            else{
+                this.tableData.push(this.objetoPaciente)
+            }
+            /*this.tableData.forEach(element => {
                 if(element.id_paciente == this.paciente.id_paciente){
                     alert('Entre')
                     this.index = this.tableData.indexOf(element)
                     alert(this.index)
                     this.tableData[this.index] = this.paciente
                 }
-            });
+            });*/
         },
 
         notifyVue (verticalAlign, horizontalAlign,mensaje,color) {
@@ -292,28 +301,17 @@ export default {
             })
         },
 
-        limpiarCampos(){
-            this.paciente.nombre = ''
-            this.paciente.apepaterno = ''
-            this.paciente.apematerno = ''
-            this.paciente.sexo = ''
-            this.paciente.edad = ''
-            this.paciente.calle = ''
-            this.paciente.colonia = ''
-            this.paciente.codigopostal = ''
-            this.paciente.telefono = ''
-            this.paciente.correo = ''
-            this.paciente.alergia = ''
-            this.index = 0
-        },
 
         eliminarPaciente(row){
-            const index = this.valoresTabla.indexOf(item)
-            this.objetoPaciente = Object.assign({}, item)
-            axios.get('https://localhost:5001/api/paciente/Eliminar/'+this.objetoPaciente.id_paciente
+            this.index = this.tableData.indexOf(row)
+            this.objetoPaciente = Object.assign({}, row)
+            alert(this.objetoPaciente.id_paciente)
+            axios.get('http://sgcd.azurewebsites.net/api/paciente/Eliminar/'+this.objetoPaciente.id_paciente
             )
             .then(response => {
-                this.valoresTabla.splice(index, 1)
+                alert('Eliminado')
+
+                this.tableData.splice(this.index, 1)
             })
             .catch(error => {
                 alert(error+' '+this.objetoPaciente.id_paciente)

@@ -196,7 +196,7 @@ export default {
     methods:{
         buscarInformacionPaciente(){
             if(this.id_paciente > 0){
-                axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
+                axios.get('http://sgcd.azurewebsites.net/api/Paciente/PacientePorID/'+this.id_paciente)
                 .then(response => {
                     if(response.data.id_paciente > 0){
                         alert(this.Paciente.nombre)
