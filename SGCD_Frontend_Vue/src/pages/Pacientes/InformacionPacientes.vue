@@ -17,11 +17,11 @@
                                     <div class="col-xl-2 col-lg-3">
                                         <base-input
                                             label="Paciente"
-                                            v-model="idPaciente">
+                                            v-model="id_paciente">
                                         </base-input>
                                     </div>
                                     <div class="col-xl-1 col-lg-1 pt-4">
-                                        <button class="btn btn-fill btn-info">
+                                        <button class="btn btn-fill btn-info" @click="buscarPaciente()">
                                             Buscar
                                         </button>
                                     </div>
@@ -240,7 +240,8 @@ export default {
                 correo:'',
                 alergia:''
             },
-            index:''
+            index:'',
+            id_paciente:''
         }
     },
     mounted: function(){
@@ -315,6 +316,19 @@ export default {
             })
             .catch(error => {
                 alert(error+' '+this.objetoPaciente.id_paciente)
+            })
+        },
+
+        buscarPaciente(){
+            axios.get('http://sgcd.azurewebsites.net/api/Paciente/PacientePorID/'+this.id_paciente)
+            .then(response => {
+                alert('hola')
+                this.tableData = []
+                this.objetoPaciente = response.data      
+                this.tableData.push(this.objetoPaciente)
+            })
+            .catch(error => {
+                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
             })
         },
     }

@@ -78,26 +78,11 @@
                                             v-model="Paciente.alergia">
                                     </textarea>
                                 </div>
-                                <div class="col-xl-12 pt-3">
-                                    <button class="btn btn-info btn-fill" @click="generarFolio()">
-                                        Obtener Folio
-                                    </button>
-                                </div>
                             </div>
                         </div>
-                        <hr v-if="folioCita != ''">
-                        <h3 v-if="folioCita != ''">Detalles de la cita</h3>
-                        <div class="row" v-if="folioCita != ''">
-                            <div class="col-xl-3">
-                                <base-input
-                                    type="text"
-                                    :disabled="true"
-                                    label="Folio Cita"
-                                    v-model="folioCita">
-                                </base-input>
-                            </div>
-                        </div>
-                        <div class="row" v-if="folioCita != ''">
+                        <hr v-if="Paciente.id_paciente != ''">
+                        <h3 v-if="Paciente.id_paciente != ''">Detalles de la cita</h3>
+                        <div class="row" v-if="Paciente.id_paciente != ''">
                             <div class="col-xl-3">
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Servicio</label>
@@ -122,13 +107,27 @@
                                     >
                                 </base-input>
                             </div>
-                            <div class="col-xl-4">
+                            <div class="col-xl-2">
                                 <base-input
                                     
                                     v-model="servicios[serv].tiempoestimado"
                                     label="Duracion"
                                     >
                                 </base-input>
+                            </div>
+                            
+                        </div>
+                        <div v-if="Paciente.id_paciente != ''" class="row">
+                            <div class="col-xl-3">
+                                <base-input
+                                    label="Fecha"
+                                    placeholder="YYYY-MM-DD">
+                                </base-input>
+                            </div>
+                            <div  class="col-xl-2 pt-4">
+                                <button type="submit" class="btn btn-fill btn-info" @click="agendarCita()">
+                                    Agendar
+                                </button>
                             </div>
                         </div>
                     </card>
@@ -157,29 +156,7 @@ export default {
             Cita:{
                 folio:''
             },
-            servicios:[
-                {
-                    id_servicio:'0',
-                    nombre:'Limpieza',
-                    descripcion:'Limpieza profunda',
-                    precio:'200',
-                    tiempoestimado:'20 minutos'
-                },
-                {
-                    id_servicio:'1',
-                    nombre:'Frenos',
-                    descripcion:'Frenos UP',
-                    precio:'1000',
-                    tiempoestimado:'1 hora'
-                },
-                {
-                    id_servicio:'2',
-                    nombre:'Amalgama',
-                    descripcion:'Amalgama poderosa',
-                    precio:'500',
-                    tiempoestimado:'30 minutos'
-                }
-            ],
+            servicios:[],
             objetoServicio:{
                 id_servicio:'',
                 nombre:'',
@@ -190,7 +167,15 @@ export default {
             serv:1,
             opcion:'',
             id_paciente:'',
-            folioCita:''
+            folioCita:'',
+            objetoCita:{
+                id_paciente:'',
+                id_servicio:'',
+                fecha:'',
+                hora:'',
+                observaciones:''
+
+            }
         }
     },
     methods:{
@@ -199,8 +184,8 @@ export default {
                 axios.get('http://sgcd.azurewebsites.net/api/Paciente/PacientePorID/'+this.id_paciente)
                 .then(response => {
                     if(response.data.id_paciente > 0){
-                        alert(this.Paciente.nombre)
                         this.Paciente = response.data
+                        this.cargarServicios()
                     }
                     else{
                         this.notifyVue('top','center','No hay informacion para ese paciente','danger')
@@ -229,6 +214,36 @@ export default {
                 type: color
             })
         },
+
+        cargarServicios(){
+            axios.get('http://sgcd.azurewebsites.net/api/servicio/VerServicios')
+            .then(response => {
+                this.servicios = response.data
+            })
+            .catch(error => {
+                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+            })
+        },
+
+        agendarCita(){
+            this.llenarObjetoCita()
+            axios.post('http://localhost:5001/api/cita/Agregar',this.objetoCita)
+            .then(response => {
+                alert('asasas')
+                this.notifyVue('top','center','Agendado','success')
+            })
+            .catch(error => {
+                this.notifyVue('top','center','Error','danger')
+            })
+        },
+
+        llenarObjetoCita(){
+            this.objetoCita.id_paciente = this.Paciente.id_paciente
+            this.objetoCita.id_servicio = this.servicios[this.serv].id_servicio
+            this.objetoCita.fecha = '13-02-1996'
+            this.objetoCita.hora = '80'
+            this.objetoCita.observaciones = 'fail'
+        }
     }
 }
 </script>

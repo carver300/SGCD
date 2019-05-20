@@ -16,7 +16,7 @@ namespace SGCD_API.Models
         [Required]
         public int id_servicio { get; set; }
         [Required]
-        public DateTime fecha { get; set; }
+        public string fecha { get; set; }
         [Required]
         public string hora { get; set; }
         [Required]
