@@ -249,7 +249,7 @@ export default {
     },
     methods:{
         llenarTablaPacientes(){
-            axios.get('http://sgcd.azurewebsites.net/api/paciente/VerPacientes')
+            axios.get('https://localhost:5001/api/paciente/VerPacientes')
             .then(response =>{
                 this.tableData = response.data
             }).catch(error => {

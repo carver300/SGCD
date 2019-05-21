@@ -12,21 +12,21 @@ namespace SGCD_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class PacienteController : ControllerBase
     {
         private readonly PacientesRepository _repo = new PacientesRepository();
         // GET api/values
-        [HttpGet("VerEmpleados")]
+        [HttpGet("VerPacientes")]
         public IEnumerable<Paciente> TraerEmpleados()
         {
             return _repo.GetAll();
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("PacientePorId/{id}")]
+        public Paciente PacientePorId(int id)
         {
-            return "value";
+            return  _repo.GetById(id);
         }
 
         // POST api/values
@@ -42,9 +42,10 @@ namespace SGCD_API.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("EliminarPaciente/{id}")]
+        public int Delete(int id)
         {
+            return _repo.Delete(id);
         }
     }
 }
