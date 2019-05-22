@@ -18,29 +18,28 @@ namespace SGCD_API.Controllers
         
 
         [HttpGet("VerPacientes")]
-        public IEnumerable<Paciente> GetPacientes()
+        public IActionResult GetPacientes()
         {
-            IEnumerable<Paciente> pacientes = null;
             
-            if(!_repo.GetAll(pacientes)){
-                return pacientes;
+            if(!_repo.GetAll()){
+                return BadRequest();
             }
 
-            return pacientes;
+            return Ok(_repo.getIEnu());
 
         }
 
 
         // GET api/values/5
         [HttpGet("PacientePorId/{id}")]
-        public Paciente PacientePorId(int id)
+        public IActionResult PacientePorId(int id)
         {
             Paciente paciente = null;
-            if(!_repo.GetById(id, paciente)){
-                return paciente;
+            if(!_repo.GetById(id)){
+                return BadRequest();
             }
 
-            return paciente;
+            return Ok(_repo.getPaciente());
         }
 
         // POST api/values
@@ -56,7 +55,7 @@ namespace SGCD_API.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("EliminarPaciente/{id}")]
+        [HttpGet("EliminarPaciente/{id}")]
         public int Delete(int id)
         {
             return _repo.Delete(id);
