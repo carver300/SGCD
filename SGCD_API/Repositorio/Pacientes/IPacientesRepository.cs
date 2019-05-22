@@ -6,10 +6,12 @@ namespace SGCD_API.Repositorio.Pacientes
 {
     public interface IPacientesRepository
     {
-        IEnumerable<Paciente> GetAll();
+        bool GetAll(IEnumerable<Paciente> pacientes);
 
-        Paciente GetById(int id_paciente);
+        bool GetById(int id_paciente,Paciente paciente);
 
         int Delete(int id_paciente);
+
+        
     }
 }

@@ -15,18 +15,32 @@ namespace SGCD_API.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly PacientesRepository _repo = new PacientesRepository();
-        // GET api/values
+        
+
         [HttpGet("VerPacientes")]
-        public IEnumerable<Paciente> TraerEmpleados()
+        public IEnumerable<Paciente> GetPacientes()
         {
-            return _repo.GetAll();
+            IEnumerable<Paciente> pacientes = null;
+            
+            if(!_repo.GetAll(pacientes)){
+                return pacientes;
+            }
+
+            return pacientes;
+
         }
+
 
         // GET api/values/5
         [HttpGet("PacientePorId/{id}")]
         public Paciente PacientePorId(int id)
         {
-            return  _repo.GetById(id);
+            Paciente paciente = null;
+            if(!_repo.GetById(id, paciente)){
+                return paciente;
+            }
+
+            return paciente;
         }
 
         // POST api/values

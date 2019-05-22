@@ -6,6 +6,7 @@ using System.Linq;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System.Data;
 using Dapper;
 
 
@@ -14,47 +15,67 @@ namespace SGCD_API.Repositorio.Pacientes
     public class PacientesRepository : IPacientesRepository
     {
 
-        private readonly IConfiguration _configuration;
-        public IEnumerable<Paciente> GetAll()
+        public bool GetAll(IEnumerable<Paciente> pacientes)
         {
-            IEnumerable<Paciente> pacientes = null;
-
+            
+            bool bRespuesta = false;
             using(var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
             {
-                connection.Open();
 
-                string sQuery = "Select * from paciente";
-
-                pacientes = connection.Query<Paciente>(sQuery);
-
-                connection.Close();
+                try{
+                    connection.Open();
+                    if (connection != null && connection.State == ConnectionState.Open)
+                    {
+                        string sQuery = "Select * from paciente";
+                        pacientes = connection.Query<Paciente>(sQuery);
+                        connection.Close();
+                        
+                        if(pacientes.Count() > 0){
+                            bRespuesta =  true;
+                        }
+                        else{
+                            return bRespuesta;
+                        }         
+                    }
+                }
+                catch(SqlException error){
+                    return bRespuesta;
+                }
             }
 
-
-            return pacientes;
+            return bRespuesta;
         }
 
-        public Paciente GetById(int id_paciente){
+        public bool GetById(int id_paciente,Paciente paciente){
 
-            Paciente paciente;
-            
-            using(var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            bool bRespuesta = false;
+            using (var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
             {
-                
-                connection.Open();
 
-                string sQuery = "Select nombre,apepaterno,apematerno,sexo,edad,calle,colonia,codigopostal,telefono,correo,alergia from paciente where id_paciente = @id";
+                try
+                {
+                    connection.Open();
+                    if (connection != null && connection.State == ConnectionState.Open)
+                    {
+                        string sQuery = "Select nombre,apepaterno,apematerno,sexo,edad,calle,colonia,codigopostal,telefono"+
+                                        ",correo,alergia from paciente where id_paciente = @id";
 
-                var result = connection.Query<Paciente>(sQuery,new{ ID = id_paciente});
+                        var result = connection.Query<Paciente>(sQuery, new { ID = id_paciente });
+                        paciente = result.FirstOrDefault();
+                        connection.Close();
 
-                paciente = result.FirstOrDefault();
-                connection.Close();
-
-                
-               
+                       if(paciente != null){
+                           bRespuesta = true;
+                       }
+                    }
+                }
+                catch (SqlException error)
+                {
+                    return bRespuesta;
+                }
             }
-            
-            return paciente;
+
+            return bRespuesta;
             
         }
 
@@ -64,18 +85,20 @@ namespace SGCD_API.Repositorio.Pacientes
 
             using(var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
             {
-                
-                connection.Open();
 
-                string sQuery = "Delete from paciente where id_paciente = @id";
-
-                var result = connection.Query<Paciente>(sQuery,new{ ID = id_paciente});
-
-                
-                connection.Close();
-
-                
-               
+                try
+                {
+                    connection.Open();
+                    if (connection != null && connection.State == ConnectionState.Open)
+                    {
+                        string sQuery = "Delete from paciente where id_paciente = @id";
+                        var result = connection.Query<Paciente>(sQuery, new { ID = id_paciente });
+                        connection.Close();
+                    }
+                }
+                catch(SqlException error){
+                    return iRespuesta;
+                }                
             }
 
             return iRespuesta;

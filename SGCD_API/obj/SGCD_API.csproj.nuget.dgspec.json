@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\squintero\\Documents\\Proyectos\\NetCore\\SGCD_API\\SGCD_API.csproj": {}
+    "C:\\Users\\squintero\\SGCD\\SGCD_API\\SGCD_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\squintero\\Documents\\Proyectos\\NetCore\\SGCD_API\\SGCD_API.csproj": {
+    "C:\\Users\\squintero\\SGCD\\SGCD_API\\SGCD_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\squintero\\Documents\\Proyectos\\NetCore\\SGCD_API\\SGCD_API.csproj",
+        "projectUniqueName": "C:\\Users\\squintero\\SGCD\\SGCD_API\\SGCD_API.csproj",
         "projectName": "SGCD_API",
-        "projectPath": "C:\\Users\\squintero\\Documents\\Proyectos\\NetCore\\SGCD_API\\SGCD_API.csproj",
+        "projectPath": "C:\\Users\\squintero\\SGCD\\SGCD_API\\SGCD_API.csproj",
         "packagesPath": "C:\\Users\\squintero\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\squintero\\Documents\\Proyectos\\NetCore\\SGCD_API\\obj\\",
+        "outputPath": "C:\\Users\\squintero\\SGCD\\SGCD_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

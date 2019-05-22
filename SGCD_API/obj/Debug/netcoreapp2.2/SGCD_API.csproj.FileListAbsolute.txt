@@ -12,3 +12,17 @@ A:\Proyectos\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfo.cs
 A:\Proyectos\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
 A:\Proyectos\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
 A:\Proyectos\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb
+C:\Users\squintero\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.deps.json
+C:\Users\squintero\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.runtimeconfig.json
+C:\Users\squintero\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.runtimeconfig.dev.json
+C:\Users\squintero\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.dll
+C:\Users\squintero\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\SGCD_API.pdb
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.csprojAssemblyReference.cache
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.csproj.CoreCompileInputs.cache
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cache
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorAssemblyInfo.cs
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfoInputs.cache
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfo.cs
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
+C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb
