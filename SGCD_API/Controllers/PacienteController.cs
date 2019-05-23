@@ -43,19 +43,27 @@ namespace SGCD_API.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("InsertarPaciente")]
+        public IActionResult InsertarPaciente(Paciente paciente)
         {
+            if(!_repo.insertPaciente(paciente)){
+                return  BadRequest();
+            }
+            return Ok("Insertado");
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("ActualizarPaciente")]
+        public IActionResult ActualizarPaciente(Paciente paciente)
         {
+            if (!_repo.UpdatePaciente(paciente)){
+                return BadRequest();
+            }
+            return Ok(_repo.getPaciente());
         }
 
         // DELETE api/values/5
-        [HttpGet("EliminarPaciente/{id}")]
+        [HttpPost("EliminarPaciente/{id}")]
         public int Delete(int id)
         {
             return _repo.Delete(id);

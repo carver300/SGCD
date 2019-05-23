@@ -16,7 +16,7 @@ namespace SGCD_API.Repositorio.Pacientes
     {
 
         private IEnumerable<Paciente> pacientes;
-        private Paciente paciente;
+        private Paciente pacienteAux;
         public bool GetAll()
         {
             
@@ -63,10 +63,10 @@ namespace SGCD_API.Repositorio.Pacientes
                                         ",correo,alergia from paciente where id_paciente = @id";
 
                         var result = connection.Query<Paciente>(sQuery, new { ID = id_paciente });
-                        paciente = result.FirstOrDefault();
+                        pacienteAux = result.FirstOrDefault();
                         connection.Close();
 
-                       if(paciente != null){
+                       if(pacienteAux != null){
                           return true;
                        }
                     }
@@ -79,6 +79,76 @@ namespace SGCD_API.Repositorio.Pacientes
 
             return false;
             
+        }
+
+        public bool insertPaciente(Paciente paciente){
+            using (var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            {
+
+                try
+                {
+                    connection.Open();
+                    if (connection != null && connection.State == ConnectionState.Open)
+                    {
+                        string sQuery = "INSERT INTO paciente (nombre,apepaterno,apematerno,sexo,edad,calle,colonia,"+
+                                        "codigopostal,telefono,correo,alergia) VALUES (@Nombre,@Apepaterno,@Apematerno,@Sexo"+
+                                        "@Edad,@Calle,@Colonia,@Codigopostal,@Telefono,@Correo,@Alergia)";
+
+                        var result = connection.Query<Paciente>(sQuery, new { Nombre = paciente.nombre,Apepaterno = paciente.apepaterno, Apematerno = paciente.apematerno,
+                                                                Sexo = paciente.sexo, Edad = paciente.edad,Telefono = paciente.telefono,
+                                                                Correo = paciente.correo, Calle = paciente.calle, Colonia = paciente.colonia,
+                                                                Codigopostal = paciente.codigopostal, Alergia = paciente.alergia });
+
+                        
+                        paciente = result.FirstOrDefault();
+                        pacienteAux = paciente;
+                        connection.Close();
+
+                       if(paciente != null){
+                          return true;
+                       }
+                    }
+                }
+                catch (SqlException error)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        public bool UpdatePaciente(Paciente pacienteMod){
+
+            using (var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            {
+
+                try
+                {
+                    connection.Open();
+                    if (connection != null && connection.State == ConnectionState.Open)
+                    {
+                        string sQuery = "UPDATE paciente set telefono = @Telefono, correo = @Correo, calle = @Calle, colonia = @Colonia,"+
+                                        "codigopostal = @Codigopostal WHERE id_paciente = @id";
+
+                        var result = connection.Query<Paciente>(sQuery, new { ID = pacienteMod.id_paciente, Telefono = pacienteMod.telefono,
+                                                                Correo = pacienteMod.correo, Calle = pacienteMod.calle, Colonia = pacienteMod.colonia,
+                                                                Codigopostal = pacienteMod.codigopostal });
+
+                        
+                        pacienteAux = result.FirstOrDefault();
+                        connection.Close();
+
+                       if(pacienteAux != null){
+                          return true;
+                       }
+                    }
+                }
+                catch (SqlException error)
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         public int Delete(int id_paciente){
@@ -115,7 +185,7 @@ namespace SGCD_API.Repositorio.Pacientes
         }
 
         public Paciente getPaciente(){
-            return paciente;
+            return pacienteAux;
         }
     }
 }
