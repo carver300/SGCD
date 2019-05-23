@@ -47,7 +47,7 @@ namespace SGCD_API.Controllers
         public IActionResult InsertarPaciente(Paciente paciente)
         {
             if(!_repo.insertPaciente(paciente)){
-                return  BadRequest();
+                return  BadRequest("No insertado");
             }
             return Ok("Insertado");
         }

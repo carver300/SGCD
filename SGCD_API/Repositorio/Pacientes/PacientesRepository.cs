@@ -90,21 +90,26 @@ namespace SGCD_API.Repositorio.Pacientes
                     connection.Open();
                     if (connection != null && connection.State == ConnectionState.Open)
                     {
-                        string sQuery = "INSERT INTO paciente (nombre,apepaterno,apematerno,sexo,edad,calle,colonia,"+
-                                        "codigopostal,telefono,correo,alergia) VALUES (@Nombre,@Apepaterno,@Apematerno,@Sexo"+
-                                        "@Edad,@Calle,@Colonia,@Codigopostal,@Telefono,@Correo,@Alergia)";
 
-                        var result = connection.Query<Paciente>(sQuery, new { Nombre = paciente.nombre,Apepaterno = paciente.apepaterno, Apematerno = paciente.apematerno,
-                                                                Sexo = paciente.sexo, Edad = paciente.edad,Telefono = paciente.telefono,
-                                                                Correo = paciente.correo, Calle = paciente.calle, Colonia = paciente.colonia,
-                                                                Codigopostal = paciente.codigopostal, Alergia = paciente.alergia });
+                        DynamicParameters parameters = new DynamicParameters();  
+                        parameters.Add("@nombre",paciente.nombre);
+                        parameters.Add("@apepaterno",paciente.apepaterno);
+                        parameters.Add("@apematerno",paciente.apematerno);
+                        parameters.Add("@sexo",paciente.sexo);
+                        parameters.Add("@edad",paciente.edad);
+                        parameters.Add("@calle",paciente.calle);
+                        parameters.Add("@colonia",paciente.colonia);
+                        parameters.Add("@codigopostal",paciente.codigopostal);
+                        parameters.Add("@telefono",paciente.telefono);
+                        parameters.Add("@correo",paciente.correo);
+                        parameters.Add("@alergia",paciente.alergia);
 
-                        
-                        paciente = result.FirstOrDefault();
+                        int result = connection.Execute("SP_AgregaPaciente", parameters,commandType:CommandType.StoredProcedure);
+
                         pacienteAux = paciente;
                         connection.Close();
 
-                       if(paciente != null){
+                       if(result == 1){
                           return true;
                        }
                     }
@@ -126,19 +131,27 @@ namespace SGCD_API.Repositorio.Pacientes
                     connection.Open();
                     if (connection != null && connection.State == ConnectionState.Open)
                     {
-                        string sQuery = "UPDATE paciente set telefono = @Telefono, correo = @Correo, calle = @Calle, colonia = @Colonia,"+
-                                        "codigopostal = @Codigopostal WHERE id_paciente = @id";
+                        
+                        DynamicParameters parameters = new DynamicParameters();  
+                        parameters.Add("@id_paciente",pacienteMod.id_paciente);
+                        parameters.Add("@nombre",pacienteMod.nombre);
+                        parameters.Add("@apepaterno",pacienteMod.apepaterno);
+                        parameters.Add("@apematerno",pacienteMod.apematerno);
+                        parameters.Add("@sexo",pacienteMod.sexo);
+                        parameters.Add("@edad",pacienteMod.edad);
+                        parameters.Add("@calle",pacienteMod.calle);
+                        parameters.Add("@colonia",pacienteMod.colonia);
+                        parameters.Add("@codigopostal",pacienteMod.codigopostal);
+                        parameters.Add("@telefono",pacienteMod.telefono);
+                        parameters.Add("@correo",pacienteMod.correo);
+                        parameters.Add("@alergia",pacienteMod.alergia);
 
-                        var result = connection.Query<Paciente>(sQuery, new { ID = pacienteMod.id_paciente, Telefono = pacienteMod.telefono,
-                                                                Correo = pacienteMod.correo, Calle = pacienteMod.calle, Colonia = pacienteMod.colonia,
-                                                                Codigopostal = pacienteMod.codigopostal });
+                        int result = connection.Execute("SP_ActualizarInformacionPaciente", parameters,commandType:CommandType.StoredProcedure);
 
                         
-                        pacienteAux = result.FirstOrDefault();
-                        connection.Close();
-
-                       if(pacienteAux != null){
-                          return true;
+                       if(result == 1){
+                           pacienteAux = pacienteMod;
+                           return true;
                        }
                     }
                 }
