@@ -42,6 +42,18 @@ contra varchar (30) not null,
 tipo_usuario int not null
 )
 go
+CREATE TABLE tb_listadeespera
+(
+	keyx int IDENTITY(1,1) primary key,
+	fechacita DATE,
+	horacita varchar(20),
+	nombreservicio VARCHAR(30),
+	id_paciente INT,
+	nombre VARCHAR(30),
+	apepaterno VARCHAR (30),
+	apematerno VARCHAR (30)
+)
+go
 alter table Cita
 add constraint FK_PacienteCita
 Foreign Key(id_paciente) references Paciente(id_paciente)
