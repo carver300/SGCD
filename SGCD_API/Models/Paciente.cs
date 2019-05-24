@@ -29,5 +29,29 @@ namespace SGCD_API.Models
         public string telefono { get; set; }
         public string correo { get; set; }
         public string alergia { get; set; }
+
+
+        public Paciente (){
+            
+        }
+        public Paciente (int tipo){
+            if (tipo == 1){
+                //Objeto campos importantes vacios
+                correo = "";
+                telefono = "";
+                nombre = "asas";
+            }else if(tipo == 2){
+                //Objeto datos ejemplo 1
+                correo = "prueba@gmail.com";
+                telefono = "6671744578";
+            }else if (tipo == 3){
+                //Objeto datos ejemplo 2
+                correo = "prueba2@gmail.com";
+                telefono = "6681744578";
+            }else if(tipo == 4){
+                nombre = "paco.";
+            }
+            
+        }
     }
 }

@@ -26,3 +26,6 @@ C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.AssemblyInfo.c
 C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.RazorTargetAssemblyInfo.cache
 C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.dll
 C:\Users\squintero\SGCD\SGCD_API\obj\Debug\netcoreapp2.2\SGCD_API.pdb
+A:\Proyectos\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+A:\Proyectos\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+A:\Proyectos\SGCD\SGCD_API\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll

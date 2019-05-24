@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SGCD_API.Repositorio;
 using SGCD_API.Models;
@@ -199,6 +200,47 @@ namespace SGCD_API.Repositorio.Pacientes
 
         public Paciente getPaciente(){
             return pacienteAux;
+        }
+
+        public bool validarCamposVacios(Paciente paciente){
+
+                try{
+                    if(paciente.telefono != "" && paciente.nombre != "" && paciente.correo != ""){
+                        return true;
+                    }
+                }
+                catch(NullReferenceException e ){
+                    
+                    return false;
+                }
+            
+
+            return false;        
+        }
+        public bool validarDatosRepetidos(Paciente paciente, Paciente pacientePrueba){
+            if(!paciente.telefono.Equals(pacientePrueba.telefono)){
+                if(!paciente.correo.Equals(pacientePrueba.correo)){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool validarCaracteresEspeciales(Paciente paciente){
+            bool bRespuesta = true;
+            string palabra = paciente.nombre;
+            char letra;
+            
+            for(byte i = 0; i < palabra.Length;i++){
+                letra = palabra[i];
+                if(!char.IsLetter(letra)){
+                    bRespuesta = false;
+                    break;
+                }
+            }
+
+            return bRespuesta;
         }
     }
 }

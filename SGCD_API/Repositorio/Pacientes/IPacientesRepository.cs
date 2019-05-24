@@ -19,6 +19,11 @@ namespace SGCD_API.Repositorio.Pacientes
         IEnumerable<Paciente> getIEnu();
 
         Paciente getPaciente();
-        
+
+        bool validarCamposVacios(Paciente paciente);
+
+        bool validarDatosRepetidos(Paciente paciente,Paciente paciente2);
+
+        bool validarCaracteresEspeciales(Paciente paciente);
     }
 }
