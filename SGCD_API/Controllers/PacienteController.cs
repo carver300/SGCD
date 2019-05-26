@@ -34,9 +34,15 @@ namespace SGCD_API.Controllers
         [HttpGet("PacientePorId/{id}")]
         public IActionResult PacientePorId(int id)
         {
-            Paciente paciente = null;
             if(!_repo.GetById(id)){
-                return BadRequest();
+                if (_repo.GetException())
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return Ok(-1);
+                }
             }
 
             return Ok(_repo.getPaciente());
@@ -57,13 +63,20 @@ namespace SGCD_API.Controllers
         public IActionResult ActualizarPaciente(Paciente paciente)
         {
             if (!_repo.UpdatePaciente(paciente)){
-                return BadRequest();
+                if (_repo.GetException())
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return Ok(-1);
+                }
             }
             return Ok(_repo.getPaciente());
         }
 
         // DELETE api/values/5
-        [HttpPost("EliminarPaciente/{id}")]
+        [HttpGet("EliminarPaciente/{id}")]
         public int Delete(int id)
         {
             return _repo.Delete(id);

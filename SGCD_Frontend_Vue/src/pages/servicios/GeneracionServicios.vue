@@ -135,7 +135,7 @@ const axios = require('axios');
     methods:{
 
         guardarServicio(){
-             axios.post('http://sgcd.azurewebsites.net/api/servicio/Agregar',this.servicio)
+             axios.post('https://localhost:5001/api/servicio/AgregarServicio',this.servicio)
              .then(response => {
                 this.notifyVue('top','center','Servicio registrado','success')
              })
@@ -145,7 +145,7 @@ const axios = require('axios');
         },
 
         cargarServicios(){
-            axios.get('http://sgcd.azurewebsites.net/api/servicio/VerServicios')
+            axios.get('https://localhost:5001/api/servicio/VerServicios')
             .then(response => {
                 this.tableData = response.data
             })
@@ -155,7 +155,7 @@ const axios = require('axios');
         },
 
         buscarServicio(){
-            axios.get('http://sgcd.azurewebsites.net/api/servicio/ServicioPorID/'+this.idServicio)
+            axios.get('https://localhost:5001/api/servicio/ServicioPorId/'+this.idServicio)
             .then(response => {
                 this.tableData = []
                 this.servicio2 = response.data      

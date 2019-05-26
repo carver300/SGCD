@@ -264,7 +264,7 @@ export default {
         },
 
         editarInformacion(){
-            axios.put('http://sgcd.azurewebsites.net/api/paciente/Editar',this.objetoPaciente)
+            axios.post('https://localhost:5001/api/paciente/ActualizarPaciente',this.objetoPaciente)
             .then(response =>{
                 this.notifyVue('top','center','Se edito la informacion del paciente','success')
                 this.actualizarRowTable()
@@ -307,11 +307,9 @@ export default {
             this.index = this.tableData.indexOf(row)
             this.objetoPaciente = Object.assign({}, row)
             alert(this.objetoPaciente.id_paciente)
-            axios.get('http://sgcd.azurewebsites.net/api/paciente/Eliminar/'+this.objetoPaciente.id_paciente
+            axios.get('https://localhost:5001/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
             )
             .then(response => {
-                alert('Eliminado')
-
                 this.tableData.splice(this.index, 1)
             })
             .catch(error => {
@@ -320,7 +318,7 @@ export default {
         },
 
         buscarPaciente(){
-            axios.get('http://sgcd.azurewebsites.net/api/Paciente/PacientePorID/'+this.id_paciente)
+            axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
             .then(response => {
                 alert('hola')
                 this.tableData = []

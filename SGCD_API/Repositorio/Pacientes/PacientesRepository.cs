@@ -18,6 +18,7 @@ namespace SGCD_API.Repositorio.Pacientes
 
         private IEnumerable<Paciente> pacientes;
         private Paciente pacienteAux;
+        SqlException ex;
         public bool GetAll()
         {
             
@@ -42,7 +43,7 @@ namespace SGCD_API.Repositorio.Pacientes
                     }
                 }
                 catch(SqlException error){
-                    return false;
+                    ex = error;
                 }
             }
 
@@ -60,7 +61,7 @@ namespace SGCD_API.Repositorio.Pacientes
                     connection.Open();
                     if (connection != null && connection.State == ConnectionState.Open)
                     {
-                        string sQuery = "Select nombre,apepaterno,apematerno,sexo,edad,calle,colonia,codigopostal,telefono"+
+                        string sQuery = "Select id_paciente,nombre,apepaterno,apematerno,sexo,edad,calle,colonia,codigopostal,telefono"+
                                         ",correo,alergia from paciente where id_paciente = @id";
 
                         var result = connection.Query<Paciente>(sQuery, new { ID = id_paciente });
@@ -74,7 +75,7 @@ namespace SGCD_API.Repositorio.Pacientes
                 }
                 catch (SqlException error)
                 {
-                    return false;
+                    ex = error;
                 }
             }
 
@@ -117,7 +118,7 @@ namespace SGCD_API.Repositorio.Pacientes
                 }
                 catch (SqlException error)
                 {
-                    return false;
+                    ex = error;
                 }
             }
             return false;
@@ -158,7 +159,7 @@ namespace SGCD_API.Repositorio.Pacientes
                 }
                 catch (SqlException error)
                 {
-                    return false;
+                    ex = error;
                 }
             }
 
@@ -177,17 +178,19 @@ namespace SGCD_API.Repositorio.Pacientes
                     connection.Open();
                     if (connection != null && connection.State == ConnectionState.Open)
                     {
-                        string sQuery = "Delete from paciente where id_paciente = @id";
-                        var result = connection.Query<Paciente>(sQuery, new { ID = id_paciente });
+                        DynamicParameters parameters = new DynamicParameters();
+
+                        parameters.Add("@id_paciente", id_paciente);
+                        int result = connection.Execute("SP_EliminarPaciente", parameters, commandType:CommandType.StoredProcedure);
                         connection.Close();
 
-                        if(result != null){
-                            return 1;
+                        if(result == 1){
+                            return result;
                         }
                     }
                 }
                 catch(SqlException error){
-                    return 0;
+                    ex = error;
                 }                
             }
 
@@ -200,6 +203,15 @@ namespace SGCD_API.Repositorio.Pacientes
 
         public Paciente getPaciente(){
             return pacienteAux;
+        }
+
+        public bool GetException()
+        {
+            if(ex != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool validarCamposVacios(Paciente paciente){

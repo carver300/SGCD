@@ -1,6 +1,7 @@
 using SGCD_API.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace SGCD_API.Repositorio.Pacientes
 {
@@ -19,6 +20,8 @@ namespace SGCD_API.Repositorio.Pacientes
         IEnumerable<Paciente> getIEnu();
 
         Paciente getPaciente();
+
+        bool GetException();
 
         bool validarCamposVacios(Paciente paciente);
 

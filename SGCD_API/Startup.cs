@@ -50,11 +50,9 @@ namespace SGCD_API
                 app.UseHsts();
             }
             
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
+        
             app.UseCors("AllowSpecificOrigin");
-            app.UseHttpsRedirection();
+            
             app.UseMvc();
         }
     }

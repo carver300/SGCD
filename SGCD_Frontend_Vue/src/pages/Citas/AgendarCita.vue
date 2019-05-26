@@ -121,8 +121,15 @@
                             <div class="col-xl-3">
                                 <base-input
                                     label="Fecha"
-                                    placeholder="YYYY-MM-DD">
+                                    placeholder="YYYY-MM-DD"
+                                    v-model="objetoCita.fecha">
                                 </base-input>
+                            </div>
+                            <div class="col-xl-3">
+                                 <label for="exampleFormControlSelect1">Hora</label>
+                                <select class="form-control" id="exampleFormControlSelect1" v-model="hor">
+                                    <option v-for="(hora,index) in horasservicio" :key="hora.hora" :value="index" >{{hora.hora}}</option>
+                                </select>
                             </div>
                             <div  class="col-xl-2 pt-4">
                                 <button type="submit" class="btn btn-fill btn-info" @click="agendarCita()">
@@ -157,6 +164,11 @@ export default {
                 folio:''
             },
             servicios:[],
+            horasservicio:[
+                {
+                    hora:'8:00'
+                }
+            ],
             objetoServicio:{
                 id_servicio:'',
                 nombre:'',
@@ -165,6 +177,7 @@ export default {
                 tiempoestimado:''
             },
             serv:1,
+            hor:1,
             opcion:'',
             id_paciente:'',
             folioCita:'',
@@ -174,14 +187,13 @@ export default {
                 fecha:'',
                 hora:'',
                 observaciones:''
-
             }
         }
     },
     methods:{
         buscarInformacionPaciente(){
             if(this.id_paciente > 0){
-                axios.get('http://sgcd.azurewebsites.net/api/Paciente/PacientePorID/'+this.id_paciente)
+                axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
                 .then(response => {
                     if(response.data.id_paciente > 0){
                         this.Paciente = response.data
@@ -216,7 +228,7 @@ export default {
         },
 
         cargarServicios(){
-            axios.get('http://sgcd.azurewebsites.net/api/servicio/VerServicios')
+            axios.get('https://localhost:5001/api/servicio/VerServicios')
             .then(response => {
                 this.servicios = response.data
             })
@@ -227,7 +239,7 @@ export default {
 
         agendarCita(){
             this.llenarObjetoCita()
-            axios.post('http://localhost:5001/api/cita/Agregar',this.objetoCita)
+            axios.post('https://localhost:5001/api/cita/InsertarCita',this.objetoCita)
             .then(response => {
                 alert('asasas')
                 this.notifyVue('top','center','Agendado','success')
@@ -239,11 +251,10 @@ export default {
 
         llenarObjetoCita(){
             this.objetoCita.id_paciente = this.Paciente.id_paciente
-            this.objetoCita.id_servicio = this.servicios[this.serv].id_servicio
-            this.objetoCita.fecha = '13-02-1996'
-            this.objetoCita.hora = '80'
-            this.objetoCita.observaciones = 'fail'
+            this.objetoCita.id_servicio = this.servicios[this.serv].id_servicio;
+            this.objetoCita.hora = this.horasservicio[this.hor].hora;
         }
+        
     }
 }
 </script>

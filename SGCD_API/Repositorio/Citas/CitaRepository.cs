@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using SGCD_API.Repositorio;
 using SGCD_API.Models;
-using System.Threading.Tasks;
 using System.Linq;
-using System.Data.Sql;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using System.Data;
 using Dapper;
 
@@ -97,7 +93,7 @@ namespace SGCD_API.Repositorio.Citas
                         parameters.Add("@estatus",cita.estatus);
                         parameters.Add("@observaciones",cita.observaciones);
 
-                        int result = connection.Execute("SP_AgregaPaciente", parameters,commandType:CommandType.StoredProcedure);
+                        int result = connection.Execute("SP_AgregaCita", parameters,commandType:CommandType.StoredProcedure);
 
                         CitaAux = cita;
                         connection.Close();
@@ -148,8 +144,6 @@ namespace SGCD_API.Repositorio.Citas
 
         public int Delete(int id_cita){
 
-            int iRespuesta = 0;
-
             using(var connection = new SqlConnection("Data Source=scgddb.database.windows.net;Initial Catalog=Clinica;User ID=administrador;Password=Clinica123;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
             {
 
@@ -179,7 +173,7 @@ namespace SGCD_API.Repositorio.Citas
             return Citas;
         }
 
-        public Cita getPaciente(){
+        public Cita getCitas(){
             return CitaAux;
         }
     }

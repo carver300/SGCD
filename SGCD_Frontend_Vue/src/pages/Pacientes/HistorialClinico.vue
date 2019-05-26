@@ -18,7 +18,7 @@
                                             v-model="idPaciente"
                                             >
                                         </base-input>
-                                        <button class="btn btn-fill btn-info" @click="buscarPaciente()">
+                                        <button class="btn btn-fill btn-info" @click="buscarInformacionPaciente()">
                                             Buscar
                                         </button>
                                     </div>
@@ -41,35 +41,40 @@
                                 <div class="row">
                                     <div class="col-xl-3">
                                         <base-input
-                                            label="Nombre">
+                                            label="Nombre"
+                                            v-model="Paciente.nombre">
                                         </base-input>
                                     </div>
                                     <div class="col-xl-3">
                                         <base-input
-                                            label="Apellido Paterno">
+                                            label="Apellido Paterno"
+                                            v-model="Paciente.apepaterno">
                                         </base-input>
                                     </div>
                                     <div class="col-xl-3">
                                         <base-input
-                                            label="Apellido Materno">
+                                            label="Apellido Materno"
+                                            v-model="Paciente.apematerno">
                                         </base-input>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-3">
                                         <base-input
-                                            label="Sexo">
+                                            label="Sexo"
+                                            v-model="Paciente.sexo">
                                         </base-input>
                                     </div>
                                     <div class="col-xl-2">
                                         <base-input
-                                            label="Edad">
+                                            label="Edad"
+                                            v-model="Paciente.edad">
                                         </base-input>
                                     </div>
                                     <div class="col-xl-4">
                                         <label>Alergias</label>
                                         <textarea rows="1" class="form-control border-input"
-                                            >
+                                            v-model="Paciente.alergia">
                                         </textarea>
                                     </div>
                                 </div>
@@ -126,20 +131,39 @@ export default {
             tableColumns:['Folio Cita','Servicio','Observaciones'],
             tableData:[],
             Paciente:{
-                nombre:'Nombre',
-                apepaterno:'Apellido Paterno',
-                apematerno:'Apellido Materno'
+                nombre:'',
+                apepaterno:'',
+                apematerno:'',
+                sexo:'',
+                edad:'',
+                calle:'',
+                colonia:'',
+                codigopostal:'',
+                telefono:'',
+                correo:'',
+                alergia:'',
             },
             idPaciente:''
         }
     },
     methods:{
-        buscarPaciente(){
-            if(this.idPaciente > 0){
-
+        buscarInformacionPaciente(){
+            if(this.idPaciente > 0 && this.idPaciente != ''){
+                axios.get('https://localhost:5001/api/paciente/PacientePorID/'+this.idPaciente)
+                .then(response => {
+                    if(response.data != -1){
+                        this.Paciente = response.data
+                    }
+                    else{
+                        this.notifyVue('top','center','No hay informacion para ese paciente','danger')
+                    }
+                })
+                .catch(error => {
+                    this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+                })
             }
             else{
-                this.notifyVue('top','center','No se ha ingresado un numero de paciente','warning')
+                this.notifyVue('top','center','No haz capturado un numero de paciente valido','warning')
             }
         },
 

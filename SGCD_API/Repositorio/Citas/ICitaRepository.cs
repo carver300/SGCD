@@ -14,11 +14,10 @@ namespace SGCD_API.Repositorio.Citas
 
         bool  actualizarCita(Cita cita);
 
-        int Delete(int id_cita);
-        
+        int Delete(int id_cita);        
         IEnumerable<Cita> getIEnu();
 
-        Cita getPaciente();
+        Cita getCitas();
         
     }
 }

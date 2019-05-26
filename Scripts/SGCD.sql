@@ -26,7 +26,8 @@ estatus int not null
 )
 go
 create table Cita(
-id_cita int IDENTITY(10000,1) primary key,
+keyx int IDENTITY(10000,1) primary key,
+foliocita int not null,
 id_paciente int not null,
 id_servicio int not null,
 fecha date not null,
@@ -53,6 +54,14 @@ CREATE TABLE tb_listadeespera
 	apepaterno VARCHAR (30),
 	apematerno VARCHAR (30)
 )
+go
+CREATE TABLE Foliador
+(
+	folio INT,
+	tipo char(1)
+)
+go
+insert into Foliador VALUES (1000,'A')
 go
 alter table Cita
 add constraint FK_PacienteCita

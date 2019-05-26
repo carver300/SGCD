@@ -17,7 +17,7 @@ namespace SGCD_API.Controllers
         private readonly CitaRepository _repo = new CitaRepository();
         
 
-        [HttpGet("VerPacientes")]
+        [HttpGet("VerCitas")]
         public IActionResult GetCitas()
         {
             
@@ -31,35 +31,34 @@ namespace SGCD_API.Controllers
 
 
         // GET api/values/5
-        [HttpGet("PacientePorId/{id}")]
+        [HttpGet("CitaPorId/{id}")]
         public IActionResult CitaPorId(int id)
         {
-            Paciente paciente = null;
             if(!_repo.GetById(id)){
                 return BadRequest();
             }
 
-            return Ok(_repo.getPaciente());
+            return Ok(_repo.getCitas());
         }
 
         // POST api/values
-        [HttpPost("InsertarPaciente")]
-        public IActionResult InsertarCita(Paciente paciente)
+        [HttpPost("InsertarCita")]
+        public IActionResult InsertarCita(Cita cita)
         {
-            if(!_repo.insertarCita(new Cita())){
+            if(!_repo.insertarCita(cita)){
                 return  BadRequest("No insertado");
             }
             return Ok("Insertado");
         }
 
         // PUT api/values/5
-        [HttpPost("ActualizarPaciente")]
-        public IActionResult ActualizarCita(Paciente paciente)
+        [HttpPost("ActualizarCita")]
+        public IActionResult ActualizarCita(Cita cita)
         {
             if (!_repo.actualizarCita(new Cita())){
                 return BadRequest();
             }
-            return Ok(_repo.getPaciente());
+            return Ok(_repo.getCitas());
         }
 
         // DELETE api/values/5
