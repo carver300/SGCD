@@ -1,31 +1,66 @@
 <template>
-    <div>
-        <div class="container" style="padding-top:50px;">
-            <div class="row justify-content-xl-center">
-                <div class="col-xl-4">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            SGCD
-                        </div>
-                        <hr>
-                        <div class="card-body">
-                            <img src="https://placeimg.com/128/128/tech/sepia" alt="imagen">
-                            <h4 class="text-center">Hunger</h4>
-                            <form class="form-signin">
-                                <input type="text" class="form-control mb-2" placeholder="Email" required autofocus>
-                                <input type="password" class="form-control mb-2" placeholder="Password" required>
-                                <button class="btn btn-lg btn-info btn-fill mb-1">Ingresar</button>
-                            </form>
-                        </div>
+   <div class="modal-dialog text-center">
+       <div class="col-xl-8 main-section">
+           <div class="modal-content">
+               <div class="col-12 usr-img">
+                   <img src="@/assets/img/avatar.png" alt="avatar">
+               </div>
+                <form class="col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Correo" v-model="usuario">
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Contrasena" v-model="contra">
+                    </div>
+                    <button type="submit" class="btn btn-fill btn-primary mb-2" @click="validarUsuario()">Ingresar</button>
+                </form>
+           </div>
+       </div>
+   </div>
 </template>
+
+<style>
+    
+   
+    .main-section{
+        margin:0 auto;
+        margin-top: 25%;
+        padding: 0;
+    }
+
+    .modal-content{
+        background-color:#2a2a2a;
+        box-shadow: 0px 0px 3px #848484;
+        opacity: .90;
+        padding: 0 2px;
+
+    }
+    .usr-img{
+        margin-top: -50px;
+        margin-bottom: 35px;
+    }
+
+    .usr-img img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
 
 <script>
 export default {
-    name:'Login'
+    name:'Login',
+    data(){
+        return {
+            usuario:'',
+            contra:''
+        }
+    },
+    methods:{
+        validarUsuario(){
+            if(this.usuario == "capturista"){
+                this.$router.push({name:'dash',params:{tipoUsuario:3}})
+            }
+        }
+    }
 }
 </script>

@@ -9,6 +9,12 @@
   export default {}
 </script>
 <style lang="scss">
+
+  body {
+     //background-image:  url(./assets/img/fondo.jpg);
+     background: #000000;
+  }
+
   .vue-notifyjs.notifications{
     .list-move {
       transition: transform 0.3s, opacity 0.4s;

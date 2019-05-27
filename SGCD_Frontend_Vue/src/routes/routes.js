@@ -12,8 +12,10 @@ const routes = [
     component:Login,
   },
   {
-    path: '/asas',
+    path: '/dash/:tipoUsuario',
+    name: 'dash',
     component: DashboardLayout,
+    props: true,
     redirect: '/admin/overview'
   },
   {

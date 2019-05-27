@@ -24,6 +24,7 @@
       <sidebar-link to="/admin/AgendarCita">
         <i class="nc-icon nc-paper-2"></i>
         <p>Agendar Cita</p>
+        {{tipoUsuario}}
       </sidebar-link>
     </side-bar>
     <div class="main-panel">
@@ -46,17 +47,31 @@
   import DashboardContent from './Content.vue'
   import MobileMenu from './MobileMenu.vue'
   export default {
+    props:['tipoUsuario'],
     components: {
       TopNavbar,
       ContentFooter,
       DashboardContent,
       MobileMenu
     },
+    data(){
+      return{
+        tipousuario:0
+      }
+    },
+    mounted: function(){
+      this.pasarTipoUsuario()
+    },
     methods: {
       toggleSidebar () {
         if (this.$sidebar.showSidebar) {
           this.$sidebar.displaySidebar(false)
         }
+      },
+      pasarTipoUsuario(){
+        this.tipousuario = tipoUsuario;
+
+        alert(this.tipoUsuario +'  -  '+tipoUsuario)
       }
     }
   }
