@@ -4,11 +4,15 @@ import NotFound from '../pages/NotFoundPage.vue'
 
 // Admin pages
 import Overview from 'src/pages/Overview.vue'
-
+import Login from 'src/pages/Login/Login.vue'
 
 const routes = [
   {
-    path: '/',
+    path:'/',
+    component:Login,
+  },
+  {
+    path: '/asas',
     component: DashboardLayout,
     redirect: '/admin/overview'
   },
