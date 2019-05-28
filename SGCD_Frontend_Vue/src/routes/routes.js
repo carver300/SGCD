@@ -12,16 +12,11 @@ const routes = [
     component:Login,
   },
   {
-    path: '/dash/:tipoUsuario',
-    name: 'dash',
+    path: '/SGCD/:tipoUsuario',
+    name:'SGCD',
     component: DashboardLayout,
-    props: true,
-    redirect: '/admin/overview'
-  },
-  {
-    path: '/admin',
-    component: DashboardLayout,
-    redirect: '/admin/overview',
+    redirect:'/SGCD/:tipoUsuario/overview',
+    props:true,
     children: [
       {
         path: 'overview',
@@ -29,12 +24,12 @@ const routes = [
         component: Overview
       },
       {
-        path: 'AltaPaciente',
+        path: 'altapaciente',
         name: 'AltaPaciente',
         component: () => import('../pages/Pacientes/AltaPacientes.vue')
       },
       {
-        path: 'InformacionPacientes',
+        path: 'informacionpacientes',
         name: 'InformacionPacientes',
         component: () => import('../pages/Pacientes/InformacionPacientes.vue')
       },
@@ -44,14 +39,19 @@ const routes = [
         component: () => import('../pages/servicios/GeneracionServicios.vue')
       },
       {
-        path: 'AgendarCita',
+        path: 'agendarcita',
         name: 'AgendarCita',
         component: () => import('../pages/Citas/AgendarCita.vue')
       },
       {
-        path: 'HistorialClinico',
+        path: 'historialclinico',
         name: 'HistorialClinico',
         component: () => import('../pages/Pacientes/HistorialClinico.vue')
+      },
+      {
+        path: 'listadeespera',
+        name:'ListaDeEspera',
+        component: () => import('../pages/Citas/ListaDeEspera.vue')
       }
     ]
   },

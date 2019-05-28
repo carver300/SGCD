@@ -5,23 +5,25 @@
                 <div class="col-xl-12">
                     <card>
                         <card 
-                            class="strpied-tabled-with-hover"
+                            class="striped-tabled-with-hover"
                             body-classes="table-full-width table-responsive"
                         >
                             <template slot="header">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6">
+                                <div class="row ">
+                                    <div class="col-xl-8 col-lg-6">
                                         <h3 class="card-title">Informacion Pacientes</h3>
                                         <p class="card-category">Informacion General de los Ultimos 15 Pacientes Registrados</p>
                                     </div>
                                     <div class="col-xl-2 col-lg-3">
+                                        <h6>Buscar Paciente</h6>
                                         <base-input
-                                            label="Paciente"
+                                            class="pt-1"
+                                            placeholder="No.Paciente"
                                             v-model="id_paciente">
                                         </base-input>
                                     </div>
-                                    <div class="col-xl-1 col-lg-1 pt-4">
-                                        <button class="btn btn-fill btn-info" @click="buscarPaciente()">
+                                    <div class="col-xl-1 col-lg-1 pt-3">
+                                        <button class="btn btn-fill btn-info float-right" @click="buscarPaciente()">
                                             Buscar
                                         </button>
                                     </div>
@@ -249,7 +251,7 @@ export default {
     },
     methods:{
         llenarTablaPacientes(){
-            axios.get('https://localhost:5001/api/paciente/VerPacientes')
+            axios.get('https://SGCD.azurewebsites.net/api/paciente/VerPacientes')
             .then(response =>{
                 this.tableData = response.data
             }).catch(error => {
@@ -264,7 +266,7 @@ export default {
         },
 
         editarInformacion(){
-            axios.post('https://localhost:5001/api/paciente/ActualizarPaciente',this.objetoPaciente)
+            axios.post('https://SGCD.azurewebsites.net/api/paciente/ActualizarPaciente',this.objetoPaciente)
             .then(response =>{
                 this.notifyVue('top','center','Se edito la informacion del paciente','success')
                 this.actualizarRowTable()
@@ -307,7 +309,7 @@ export default {
             this.index = this.tableData.indexOf(row)
             this.objetoPaciente = Object.assign({}, row)
             alert(this.objetoPaciente.id_paciente)
-            axios.get('https://localhost:5001/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
+            axios.get('https://SGCD.azurewebsites.net/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
             )
             .then(response => {
                 this.tableData.splice(this.index, 1)
@@ -318,7 +320,7 @@ export default {
         },
 
         buscarPaciente(){
-            axios.get('https://localhost:5001/api/Paciente/PacientePorID/'+this.id_paciente)
+            axios.get('https://SGCD.azurewebsites.net/api/paciente/PacientePorId/'+this.id_paciente)
             .then(response => {
                 alert('hola')
                 this.tableData = []

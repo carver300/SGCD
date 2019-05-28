@@ -7,12 +7,17 @@
                </div>
                 <form class="col-12">
                     <div class="form-group">
+                        <h6 class="text-left">Correo</h6>
                         <input type="text" class="form-control" placeholder="Correo" v-model="usuario">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Contrasena" v-model="contra">
+                        <h6 class="text-left">Contraseña</h6>
+                        <input type="password" class="form-control" placeholder="Contraseña" v-model="contra">
                     </div>
-                    <button type="submit" class="btn btn-fill btn-primary mb-2" @click="validarUsuario()">Ingresar</button>
+                    <button type="submit" class="btn btn-block btn-fill btn-primary btn-rounded mb-2" @click="validarUsuario()">Ingresar</button>
+                    <div class="form-group">
+                        <small class="text-primary">¿Olvidaste tu contraseña?</small>
+                    </div>
                 </form>
            </div>
        </div>
@@ -20,7 +25,10 @@
 </template>
 
 <style>
-    
+
+    .btn-rounded{
+        border-radius: 20px;
+    } 
    
     .main-section{
         margin:0 auto;
@@ -29,7 +37,7 @@
     }
 
     .modal-content{
-        background-color:#2a2a2a;
+        background-color:#FFFFFF;
         box-shadow: 0px 0px 3px #848484;
         opacity: .90;
         padding: 0 2px;
@@ -58,7 +66,7 @@ export default {
     methods:{
         validarUsuario(){
             if(this.usuario == "capturista"){
-                this.$router.push({name:'dash',params:{tipoUsuario:3}})
+                this.$router.push({name:'SGCD',params:{tipoUsuario:3}})
             }
         }
     }
