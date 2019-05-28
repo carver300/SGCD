@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-xl-2 col-lg-3">
                   <h6>Generar Lista Del Día</h6>
-                  <button class="btn btn-fill btn-info" @click="buscarPaciente()">Generar</button>
+                  <button class="btn btn-fill btn-info" @click="llenarListaDelDia()">Generar</button>
                 </div>
                 <div class="col-xl-2 col-lg-3">
                   <h6>Buscar Paciente</h6>
@@ -28,19 +28,14 @@
               <l-table class="table-hover" :columns="tableColumns" :data="tableData">
                 <template slot="columns"></template>
                 <template slot-scope="{row}">
+                  <td>{{row.keyx}}</td>
+                  <td>{{row.fechacita}}</td>
+                  <td>{{row.horacita}}</td>
+                  <td>{{row.nombreservicio}}</td>
                   <td>{{row.id_paciente}}</td>
                   <td>{{row.nombre}}</td>
                   <td>{{row.apepaterno}}</td>
                   <td>{{row.apematerno}}</td>
-                  <td>{{row.sexo}}</td>
-                  <td>{{row.edad}}</td>
-                  <td>{{row.alergia}}</td>
-                  <td>{{row.calle}}</td>
-                  <td>{{row.colonia}}</td>
-                  <td>{{row.codigopostal}}</td>
-                  <td>{{row.telefono}}</td>
-                  <td>{{row.correo}}</td>
-                  <td>
                     <button class="btn btn-icon btn-info" @click="cargarDatosModal(row)">
                       <i class="fa fa-edit"></i>
                     </button>
@@ -72,22 +67,28 @@ export default {
   data() {
     return {
       tableColumns: [
-        "Id",
+        "ID",
+        "Fecha Cita",
+        "Hora Cita",
+        "Nombre Servicio",
+        "No. Paciente",
         "Nombre",
         "Apellido Paterno",
-        "Apellido Materno",
-        "Sexo",
-        "Edad",
-        "Alergia",
-        "Calle",
-        "Colonia",
-        "Codigo Postal",
-        "Telefono",
-        "Correo Electronico",
-        "Acciones"
+        "Apellido Materno"
       ],
-      tableData: []
+      tableData: [],
+      id_paciente:''
     };
+  },
+  methods:{
+    llenarListaDelDia(){
+            axios.get('https://SGCD.azurewebsites.net/api/ListaEspera/ListaDelDia')
+            .then(response =>{
+                this.tableData = response.data
+            }).catch(error => {
+                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+            })
+        },
   }
 };
 </script>

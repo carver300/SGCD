@@ -105,7 +105,7 @@
                 </select>
               </div>
               <div class="col-xl-2 pt-4">
-                <button type="submit" class="btn btn-fill btn-info" @click="agendarCita()">Agendar</button>
+                <button type="submit" class="btn btn-fill btn-success" @click="abrirModalCobrar()">Cobrar</button>
               </div>
             </div>
           </card>
