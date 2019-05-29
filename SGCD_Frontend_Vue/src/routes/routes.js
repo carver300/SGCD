@@ -8,15 +8,14 @@ import Login from 'src/pages/Login/Login.vue'
 
 const routes = [
   {
-    path:'/',
-    component:Login,
+    path: '/',
+    component: Login,
   },
   {
-    path: '/SGCD/:tipoUsuario',
-    name:'SGCD',
+    path: '/SGCD',
+    name: 'SGCD',
     component: DashboardLayout,
-    redirect:'/SGCD/:tipoUsuario/overview',
-    props:true,
+    redirect: '/SGCD/overview',
     children: [
       {
         path: 'overview',
@@ -50,7 +49,7 @@ const routes = [
       },
       {
         path: 'listadeespera',
-        name:'ListaDeEspera',
+        name: 'ListaDeEspera',
         component: () => import('../pages/Citas/ListaDeEspera.vue')
       }
     ]

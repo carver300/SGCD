@@ -33,37 +33,44 @@
     <div class="main-panel">
       <top-navbar></top-navbar>
 
-      <dashboard-content @click="toggleSidebar">
-
-      </dashboard-content>
+      <dashboard-content @click="toggleSidebar"></dashboard-content>
 
       <content-footer></content-footer>
     </div>
   </div>
 </template>
 <style lang="scss">
-
 </style>
 <script>
-  import TopNavbar from './TopNavbar.vue'
-  import ContentFooter from './ContentFooter.vue'
-  import DashboardContent from './Content.vue'
-  import MobileMenu from './MobileMenu.vue'
-  export default {
-    props:['tipoUsuario'],
-    components: {
-      TopNavbar,
-      ContentFooter,
-      DashboardContent,
-      MobileMenu
+import TopNavbar from "./TopNavbar.vue";
+import ContentFooter from "./ContentFooter.vue";
+import DashboardContent from "./Content.vue";
+import MobileMenu from "./MobileMenu.vue";
+export default {
+  components: {
+    TopNavbar,
+    ContentFooter,
+    DashboardContent,
+    MobileMenu
+  },
+  data() {
+    return {
+      tipoUsuario: ""
+    };
+  },
+  mounted: function() {
+    this.obtenerTipoUsuario();
+  },
+  methods: {
+    toggleSidebar() {
+      if (this.$sidebar.showSidebar) {
+        this.$sidebar.displaySidebar(false);
+      }
     },
-    methods: {
-      toggleSidebar () {
-        if (this.$sidebar.showSidebar) {
-          this.$sidebar.displaySidebar(false)
-        }
-      },
+
+    obtenerTipoUsuario() {
+      this.tipoUsuario = localStorage.getItem("tipoUsuario");
     }
   }
-
+};
 </script>
