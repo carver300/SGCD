@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
+import android.content.Intent;
 
 import java.io.IOException;
 
@@ -18,10 +19,13 @@ import com.example.sgcd.Model.Post;
 import java.util.List;
 
 import com.example.sgcd.Interface.SGCDAPI;
+import com.example.sgcd.Model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextView jsonText;
+    private TextView textUsuario;
+    private TextView textContra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,44 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         jsonText = findViewById(R.id.jsonText);
-        getPosts();
+        textUsuario = findViewById(R.id.editText);
+        textContra = findViewById(R.id.editText2);
+        //getPosts();
+    }
+
+    public void onClick(View view){
+        login();
+    }
+
+    private void login(){
+        Retrofit  retrofit = new Retrofit.Builder()
+                .baseUrl("https://SGCD.azurewebsites.net/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        SGCDAPI sgcd = retrofit.create(SGCDAPI.class);
+
+        Call<Integer> call = sgcd.loginApp(new Usuario(textUsuario.getText().toString(),textContra.getText().toString()));
+
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if(response.body().intValue() == 1){
+                    jsonText.setText("Se logueo bien");
+
+                    Intent myIntent = new Intent(getBaseContext(),   MainActivity.class);
+                    startActivity(myIntent);
+
+                }
+                else{
+                    jsonText.setText("No se logueo "+response.body().intValue());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                jsonText.setText(t.getMessage());
+            }
+        });
     }
 
     private void getPosts(){
