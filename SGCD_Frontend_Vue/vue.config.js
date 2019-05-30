@@ -22,7 +22,7 @@ module.exports = {
     ]
   },
   pwa: {
-    name: 'Vue Light Bootstrap Dashboard',
+    name: 'SGCD',
     themeColor: '#344675',
     msTileColor: '#344675',
     appleMobileWebAppCapable: 'yes',
