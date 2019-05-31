@@ -14,12 +14,12 @@
               </div>
               <div class="row">
                 <div class="col-xl-5">
-                  <base-input label="Cita" placeholder="Folio cita"></base-input>
+                  <base-input label="Cita" placeholder="Folio cita" v-model="FolioCita"></base-input>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-4">
-                  <button class="btn btn-fill btn-info">Buscar</button>
+                  <button class="btn btn-fill btn-info" @click="traerInformacionCita()">Buscar</button>
                 </div>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default {
     traerInformacionCita() {
       axios
         .get(
-          "https://SGCD.azurewebsites.net/api/Cita/CitaPorId" + this.FolioCita
+          "https://SGCD.azurewebsites.net/api/Cita/CitaPorId/" + this.FolioCita
         )
         .then(response => {
           if (response.data != -1) {
@@ -163,7 +163,8 @@ export default {
     },
 
     buscarInformacionPaciente() {
-      if (this.idPaciente > 0 && this.idPaciente != "") {
+      alert(this.Cita.id_paciente)
+      if (this.Cita.id_paciente > 0 && this.Cita.id_paciente != "") {
         axios
           .get(
             "https://SGCD.azurewebsites.net/api/paciente/PacientePorID/" +
@@ -172,31 +173,11 @@ export default {
           .then(response => {
             if (response.data != -1) {
               this.Paciente = response.data;
-              this.obtenerHistorialCitas();
-            } else {
-              this.notifyVue(
-                "top",
-                "center",
-                "No hay informacion para ese paciente",
-                "danger"
-              );
             }
           })
           .catch(error => {
-            this.notifyVue(
-              "top",
-              "center",
-              "Hubo un error al obtener la informacion, favor de reportarlo con el administrador",
-              "danger"
-            );
           });
       } else {
-        this.notifyVue(
-          "top",
-          "center",
-          "No haz capturado un numero de paciente valido",
-          "warning"
-        );
       }
     }
   }
