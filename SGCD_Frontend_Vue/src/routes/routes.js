@@ -51,6 +51,11 @@ const routes = [
         path: 'listadeespera',
         name: 'ListaDeEspera',
         component: () => import('../pages/Citas/ListaDeEspera.vue')
+      },
+      {
+        path: 'atenciondecita',
+        name: 'AtencionDeCita',
+        component: () => import('../pages/Citas/AtencionDeCita.vue')
       }
     ]
   },

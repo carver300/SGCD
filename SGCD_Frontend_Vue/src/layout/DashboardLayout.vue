@@ -5,6 +5,11 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
       </sidebar-link>
+      <div class="row justify-content-center">
+        <div class="col-11">
+          <hr style="background-color:#FFFFFF;">
+        </div>
+      </div>
       <sidebar-link to="AltaPaciente">
         <i class="nc-icon nc-simple-add"></i>
         <p>Alta Paciente</p>
@@ -17,10 +22,20 @@
         <i class="nc-icon nc-notes"></i>
         <p>Historial Clinico</p>
       </sidebar-link>
+      <div class="row justify-content-center">
+        <div class="col-11">
+          <hr style="background-color:#FFFFFF;">
+        </div>
+      </div>
       <sidebar-link to="GeneracionServicios">
         <i class="nc-icon nc-paper-2"></i>
         <p>Servicios</p>
       </sidebar-link>
+      <div class="row justify-content-center">
+        <div class="col-11">
+          <hr style="background-color:#FFFFFF;">
+        </div>
+      </div>
       <sidebar-link to="AgendarCita">
         <i class="nc-icon nc-paper-2"></i>
         <p>Agendar Cita</p>
@@ -29,6 +44,15 @@
         <i class="nc-icon nc-paper-2"></i>
         <p>Lista De Espera</p>
       </sidebar-link>
+      <sidebar-link to="AtencionDeCita">
+        <i class="nc-icon nc-paper-2"></i>
+        <p>Atencion de Cita</p>
+      </sidebar-link>
+      <div class="row justify-content-center">
+        <div class="col-11">
+          <hr style="background-color:#FFFFFF;">
+        </div>
+      </div>
     </side-bar>
     <div class="main-panel">
       <top-navbar></top-navbar>

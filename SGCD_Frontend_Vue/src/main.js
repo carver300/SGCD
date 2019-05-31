@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // LightBootstrap plugin
 import LightBootstrap from './light-bootstrap-main'
 
@@ -12,6 +14,8 @@ import './registerServiceWorker'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
+library.add(faUserSecret)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // configure router
 const router = new VueRouter({
@@ -19,7 +23,7 @@ const router = new VueRouter({
   linkActiveClass: 'nav-item active',
   scrollBehavior: (to) => {
     if (to.hash) {
-      return {selector: to.hash}
+      return { selector: to.hash }
     } else {
       return { x: 0, y: 0 }
     }
