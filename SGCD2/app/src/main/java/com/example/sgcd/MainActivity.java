@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClick(View view){
-
+    public void onClickRegistro(View view){
+        Intent myIntent = new Intent(getBaseContext(),   RegistroPacienteActivity.class);
+        startActivity(myIntent);
     }
 }
