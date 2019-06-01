@@ -1,90 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.adroid.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051">
-
-        <android.support.constraint.ConstraintLayout
+    <ImageView
+        android:background="#1E88E5"
+        android:layout_width="match_parent"
+        android:layout_height="280dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Bienvenido"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9"
-                app:layout_constraintVertical_bias="0.111" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
-                android:text="Dashboard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="0dp">
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:background="#3949AB"
                 android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="268dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.711"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo" />
+                android:layout_height="60dp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:text="SGCD Movil"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@android:color/white"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:text="Su consultorio movil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:background="#327C7C7C"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.076" />
-</android.support.constraint.ConstraintLayout>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
+
+                <ImageButton
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
+
+                <ImageButton
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" >
+
+
+                </ImageButton>
+
+                <ImageButton
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
+
+                <ImageButton
+                    android:layout_marginTop="15dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

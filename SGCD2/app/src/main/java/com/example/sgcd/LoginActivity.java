@@ -1,7 +1,9 @@
 package com.example.sgcd;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
@@ -23,23 +25,71 @@ import com.example.sgcd.Model.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView jsonText;
-    private TextView textUsuario;
-    private TextView textContra;
+
+    private TextInputLayout textUsuario;
+    private TextInputLayout textContra;
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        jsonText = findViewById(R.id.jsonText);
-        textUsuario = findViewById(R.id.editText);
-        textContra = findViewById(R.id.editText2);
+        textUsuario = findViewById(R.id.textInputEmail);
+        textContra = findViewById(R.id.textInputPassword);
         //getPosts();
     }
 
+    private boolean validacionEmail(){
+        String sEmail = textUsuario.getEditText().getText().toString().trim();
+
+        if(sEmail.isEmpty()){
+            textUsuario.setError("Correo no puede ser vacio");
+            return false;
+        }
+        else{
+            textUsuario.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validacionPassword(){
+        String sPassword = textContra.getEditText().getText().toString().trim();
+
+        if(sPassword.isEmpty()){
+            textContra.setError("Password no puede estar varcio");
+            return false;
+        }
+        else if(sPassword.length() < 1){
+            textContra.setError("Contrasena no cumple con la longitud requerida");
+            return false;
+        }
+        else{
+            textContra.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validacionDatosLogin(){
+        if(!validacionEmail() | !validacionPassword()){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
     public void onClick(View view){
-        login();
+        if(validacionDatosLogin()){
+            login();
+        }
+        else{
+            toast = Toast.makeText(this,"Favor de validar los datos proporcionados",Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP,0,0);
+            toast.show();
+        }
+
     }
 
     private void login(){
@@ -49,65 +99,34 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         SGCDAPI sgcd = retrofit.create(SGCDAPI.class);
 
-        Call<Integer> call = sgcd.loginApp(new Usuario(textUsuario.getText().toString(),textContra.getText().toString()));
+            Call<Integer> call = sgcd.loginApp(new Usuario(textUsuario.getEditText().getText().toString(),textContra.getEditText().getText().toString()));
 
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if(response.body().intValue() == 1){
-                    jsonText.setText("Se logueo bien");
+
 
                     Intent myIntent = new Intent(getBaseContext(),   MainActivity.class);
                     startActivity(myIntent);
 
                 }
                 else{
-                    jsonText.setText("No se logueo "+response.body().intValue());
+                   mostrarMensajeToast("Usuario o contrasena invalidos");
                 }
             }
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-                jsonText.setText(t.getMessage());
+                mostrarMensajeToast("Se presento el error "+t.getMessage());
             }
         });
     }
 
-    private void getPosts(){
-        Retrofit  retrofit = new Retrofit.Builder()
-                .baseUrl("https://SGCD.azurewebsites.net/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        SGCDAPI sgcd= retrofit.create(SGCDAPI.class);
-
-        Call<List<Post>> call = sgcd.getPost();
-
-        call.enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                if(!response.isSuccessful()){
-                    jsonText.setText("Codigo: "+response.code());
-                }
-
-                List<Post> postList = response.body();
-
-                for(Post post: postList){
-                    String content = "";
-                    content += "ID SERVICIO"+ post.getId_servicio() +"\n";
-                    content += "Nombre"+ post.getNombre()+"\n";
-                    content += "Descripcion"+ post.getDescripcion()+"\n";
-                    content += "Precio"+ post.getPrecio()+"\n";
-                    content += "TiempoEstimado"+ post.getTiempoestimado()+"\n";
-                    jsonText.append(content);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                jsonText.setText(t.getMessage());
-            }
-        });
+    private void mostrarMensajeToast(String sMensaje){
+        toast = Toast.makeText(this,sMensaje,Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP,0,0);
+        toast.show();
     }
 
 }
