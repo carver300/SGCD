@@ -27,9 +27,7 @@ public class RegistroPacienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_paciente);
 
-        txtNombre = findViewById(R.id.textInputNombre);
-        txtApepaterno = findViewById(R.id.textInputApepaterno);
-        txtApematerno = findViewById(R.id.textInputApematerno);
+
     }
 
 
