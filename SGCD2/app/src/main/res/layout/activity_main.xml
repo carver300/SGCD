@@ -74,8 +74,9 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circlebackground"
-                    android:src="@drawable/ic_account_add_person"
-                    android:padding="10dp"/>
+                    android:onClick="onClickVerPacientes"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_account_add_person" />
 
                 <TextView
                     android:layout_width="wrap_content"

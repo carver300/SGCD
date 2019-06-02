@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVerPacientes(View view){
-        Intent myIntent = new Intent(getBaseContext(),   RegistroPacienteActivity.class);
+        Intent myIntent = new Intent(getBaseContext(),   VerPacientesActivity.class);
         startActivity(myIntent);
     }
 }

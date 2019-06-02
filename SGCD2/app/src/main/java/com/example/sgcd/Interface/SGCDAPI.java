@@ -10,8 +10,8 @@ import com.example.sgcd.Model.Usuario;
 
 public interface SGCDAPI {
 
-    @GET("Servicio/VerServicios")
-    Call<List<Post>> getPost();
+    @GET("Paciente/VerPacientes")
+    Call<List<Paciente>> getPost();
 
     @POST("Usuario/IniciarSesionAPP")
     Call<Integer> loginApp(@Body Usuario user);
