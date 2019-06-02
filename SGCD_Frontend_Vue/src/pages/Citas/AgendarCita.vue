@@ -224,22 +224,22 @@
 </template>
 
 <style>
-    .modal-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
-    }
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
 
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
 </style>
 
 <script>
@@ -264,6 +264,33 @@ export default {
       horasservicio: [
         {
           hora: "8:00"
+        },
+        {
+          hora: "9:00"
+        },
+        {
+          hora: "10:00"
+        },
+        {
+          hora: "11:00"
+        },
+        {
+          hora: "12:00"
+        },
+        {
+          hora: "13:00"
+        },
+        {
+          hora: "14:00"
+        },
+        {
+          hora: "15:00"
+        },
+        {
+          hora: "16:00"
+        },
+        {
+          hora: "17:00"
         }
       ],
       objetoServicio: {
