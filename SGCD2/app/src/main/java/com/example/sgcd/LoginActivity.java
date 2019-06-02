@@ -1,5 +1,6 @@
 package com.example.sgcd;
 
+import android.app.ProgressDialog;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ import com.example.sgcd.Model.Usuario;
 public class LoginActivity extends AppCompatActivity {
 
 
+
+    ProgressDialog progress;
+
     EditText sEmail;
     EditText sPass;
     Toast toast;
@@ -38,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
 
         sEmail = findViewById(R.id.editEmail);
         sPass = findViewById(R.id.editPassword);
+
+        progress = new ProgressDialog(LoginActivity.this);
     }
 
 
@@ -47,6 +53,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(){
+
+        progress.setTitle("Cargando");
+        progress.setMessage("Espere un momento");
+        progress.show();
+
         Retrofit  retrofit = new Retrofit.Builder()
                 .baseUrl("https://SGCD.azurewebsites.net/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -55,11 +66,13 @@ public class LoginActivity extends AppCompatActivity {
 
             Call<Integer> call = sgcd.loginApp(new Usuario(sEmail.getText().toString().trim(),sPass.getText().toString().trim()));
 
+
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if(response.body().intValue() == 1){
 
+                    progress.dismiss();
 
                     Intent myIntent = new Intent(getBaseContext(),   MainActivity.class);
                     startActivity(myIntent);

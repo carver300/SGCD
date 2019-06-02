@@ -38,4 +38,9 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getBaseContext(),   RegistroPacienteActivity.class);
         startActivity(myIntent);
     }
+
+    public void onClickVerPacientes(View view){
+        Intent myIntent = new Intent(getBaseContext(),   RegistroPacienteActivity.class);
+        startActivity(myIntent);
+    }
 }

@@ -43,16 +43,19 @@
                     android:layout_height="match_parent">
 
                     <EditText
+                        android:id="@+id/editNombre"
                         android:hint="Nombre"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editApepaterno"
                         android:hint="Apellido Paterno"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editApematerno"
                         android:hint="Apellido Maternno"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"/>
@@ -101,11 +104,12 @@
                             </RadioGroup>
 
                             <EditText
+                                android:id="@+id/editEdad"
                                 android:layout_marginLeft="8dp"
                                 android:hint="Edad"
                                 android:layout_width="100dp"
                                 android:layout_height="wrap_content"
-                                android:inputType="number"/>
+                                android:inputType="text"/>
 
                         </LinearLayout>
 
@@ -113,16 +117,19 @@
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/editAlergia"
                         android:hint="Alergia"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editCalle"
                         android:hint="Calle"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editColonia"
                         android:hint="Colonia"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"/>
@@ -133,23 +140,26 @@
                         android:layout_height="wrap_content">
 
                         <EditText
+                            android:id="@+id/editCodPostal"
                             android:layout_width="151dp"
                             android:layout_height="wrap_content"
                             android:hint="Codigo Postal"
                             android:textColorHint="@android:color/white"
-                            android:inputType="number"/>
+                            android:inputType="text"/>
 
                         <EditText
+                            android:id="@+id/editTelefono"
                             android:layout_width="151dp"
                             android:layout_height="wrap_content"
                             android:hint="Telefono"
                             android:textColorHint="@android:color/white"
-                            android:inputType="number"/>
+                            android:inputType="text"/>
 
                     </LinearLayout>
 
 
                     <EditText
+                        android:id="@+id/editCorreo"
                         android:hint="Correo"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
@@ -160,11 +170,18 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Registrar"
-                        android:textColor="@android:color/white"
                         android:background="@drawable/button_rounded"
-                        />
+                        android:onClick="onClickRegistrar"
+                        android:text="Registrar"
+                        android:textColor="@android:color/white" />
 
+
+                    <TextView
+                        android:id="@+id/ejemplo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="hola"
+                        android:textColor="@android:color/white"/>
 
 
                 </LinearLayout>

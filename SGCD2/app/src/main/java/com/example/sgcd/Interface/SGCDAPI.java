@@ -1,4 +1,5 @@
 package com.example.sgcd.Interface;
+import com.example.sgcd.Model.Paciente;
 import com.example.sgcd.Model.Post;
 import java.util.List;
 import retrofit2.Call;
@@ -14,4 +15,7 @@ public interface SGCDAPI {
 
     @POST("Usuario/IniciarSesionAPP")
     Call<Integer> loginApp(@Body Usuario user);
+
+    @POST("Paciente/InsertarPaciente")
+    Call<Integer> registrarPaciente(@Body Paciente paciente);
 }
