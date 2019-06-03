@@ -83,7 +83,6 @@ export default {
         )
         .then(response => {
           localStorage.setItem("tipoUsuario", response.data);
-          alert(localStorage.getItem("tipoUsuario"));
           this.avanzarPaginaPrincipal();
         })
         .catch(error => {

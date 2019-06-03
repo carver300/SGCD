@@ -147,7 +147,9 @@ export default {
   },
   methods: {
     traerInformacionCita() {
-      axios
+
+      if(this.FolioCita != "" && this.FolioCita > 0){
+        axios
         .get(
           "http://178.128.13.15:8000/api/Cita/CitaPorId/" + this.FolioCita
         )
@@ -160,6 +162,12 @@ export default {
         .catch(error => {
           alert(error);
         });
+      }
+      else
+      {
+        this.notifyVue('top','center','El folio ingresado no corresponde con un folio de cita','warning')
+      }
+      
     },
 
     buscarInformacionPaciente() {
@@ -182,9 +190,9 @@ export default {
 
     actualizarCita(){
         axios
-          .post(
-            "http://178.128.13.15:8000/api/Cita/ActualizarCita", this.Cita
-          )
+          .get(
+            "http://178.128.13.15:8000/api/Cita/ActualizarObservacionesCita/" + this.FolioCita+"&"+this.Cita.observaciones
+          ) 
           .then(response => {
             if (response.data != -1) {
               this.notifyVue('top','center','Registro Exitoso','success')

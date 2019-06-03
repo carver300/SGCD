@@ -10,15 +10,15 @@
           <hr style="background-color:#FFFFFF;">
         </div>
       </div>
-      <sidebar-link to="AltaPaciente">
+      <sidebar-link to="AltaPaciente" v-if="tipoUsuario == 3 || tipoUsuario == 1 ">
         <i class="nc-icon nc-simple-add"></i>
         <p>Alta Paciente</p>
       </sidebar-link>
-      <sidebar-link to="InformacionPacientes">
+      <sidebar-link to="InformacionPacientes" v-if="tipoUsuario == 3 || tipoUsuario == 1 ">
         <i class="nc-icon nc-notes"></i>
         <p>Pacientes</p>
       </sidebar-link>
-      <sidebar-link to="HistorialClinico" v-if="tipoUsuario == 2">
+      <sidebar-link to="HistorialClinico" v-if="tipoUsuario == 2 || tipoUsuario == 1 ">
         <i class="nc-icon nc-notes"></i>
         <p>Historial Clinico</p>
       </sidebar-link>
@@ -27,7 +27,7 @@
           <hr style="background-color:#FFFFFF;">
         </div>
       </div>
-      <sidebar-link to="GeneracionServicios">
+      <sidebar-link to="GeneracionServicios" v-if="tipoUsuario == 3 || tipoUsuario == 1 ">
         <i class="nc-icon nc-paper-2"></i>
         <p>Servicios</p>
       </sidebar-link>
@@ -36,7 +36,7 @@
           <hr style="background-color:#FFFFFF;">
         </div>
       </div>
-      <sidebar-link to="AgendarCita">
+      <sidebar-link to="AgendarCita" v-if="tipoUsuario == 3 || tipoUsuario == 1 ">
         <i class="nc-icon nc-paper-2"></i>
         <p>Agendar Cita</p>
       </sidebar-link>
@@ -44,7 +44,7 @@
         <i class="nc-icon nc-paper-2"></i>
         <p>Lista De Espera</p>
       </sidebar-link>
-      <sidebar-link to="AtencionDeCita">
+      <sidebar-link to="AtencionDeCita" v-if="tipoUsuario == 2 || tipoUsuario == 1 ">
         <i class="nc-icon nc-paper-2"></i>
         <p>Atencion de Cita</p>
       </sidebar-link>
