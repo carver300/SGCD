@@ -34,25 +34,25 @@
                 </div>
                 <div class="row">
                   <div class="col-xl-3">
-                    <base-input label="Nombre" v-model="Paciente.nombre"></base-input>
+                    <base-input :disabled="true" label="Nombre" v-model="Paciente.nombre"></base-input>
                   </div>
                   <div class="col-xl-3">
-                    <base-input label="Apellido Paterno" v-model="Paciente.apepaterno"></base-input>
+                    <base-input :disabled="true" label="Apellido Paterno" v-model="Paciente.apepaterno"></base-input>
                   </div>
                   <div class="col-xl-3">
-                    <base-input label="Apellido Materno" v-model="Paciente.apematerno"></base-input>
+                    <base-input :disabled="true" label="Apellido Materno" v-model="Paciente.apematerno"></base-input>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xl-3">
-                    <base-input label="Sexo" v-model="Paciente.sexo"></base-input>
+                    <base-input :disabled="true" label="Sexo" v-model="Paciente.sexo"></base-input>
                   </div>
                   <div class="col-xl-2">
-                    <base-input label="Edad" v-model="Paciente.edad"></base-input>
+                    <base-input :disabled="true" label="Edad" v-model="Paciente.edad"></base-input>
                   </div>
                   <div class="col-xl-4">
                     <label>Alergias</label>
-                    <textarea rows="1" class="form-control border-input" v-model="Paciente.alergia"></textarea>
+                    <textarea :disabled="true" rows="1" class="form-control border-input" v-model="Paciente.alergia"></textarea>
                   </div>
                 </div>
               </card>
@@ -137,10 +137,12 @@ export default {
   },
   methods: {
     buscarInformacionPaciente() {
+      this.tableData = [];
+      this.limpiarObjetoPaciente()
       if (this.idPaciente > 0 && this.idPaciente != "") {
         axios
           .get(
-            "https://SGCD.azurewebsites.net/api/paciente/PacientePorID/" +
+            "http://178.128.13.15:8000/api/paciente/PacientePorID/" +
               this.idPaciente
           )
           .then(response => {
@@ -151,8 +153,8 @@ export default {
               this.notifyVue(
                 "top",
                 "center",
-                "No hay informacion para ese paciente",
-                "danger"
+                "No existe informacion para el paciente proporcionado",
+                "warning"
               );
             }
           })
@@ -177,11 +179,21 @@ export default {
     obtenerHistorialCitas() {
       axios
         .get(
-          "https://SGCD.azurewebsites.net/api/Cita/HistorialPorPaciente/" +
+          "http://178.128.13.15:8000/api/Cita/HistorialPorPaciente/" +
             this.idPaciente
         )
         .then(response => {
-          this.tableData = response.data;
+
+          if(response.data != -1){
+            this.tableData = response.data;
+          }else{
+            this.notifyVue(
+            "top",
+            "center",
+            "No se encontraron citas para este paciente",
+            "info"
+            );
+          }
         })
         .catch(error => {
           this.notifyVue(
@@ -192,6 +204,22 @@ export default {
           );
         });
     },
+
+
+    limpiarObjetoPaciente(){
+      this.Paciente.nombre = ""
+      this.Paciente.apepaterno = ""
+      this.Paciente.apematerno = ""
+      this.Paciente.sexo = ""
+      this.Paciente.edad = ""
+      this.Paciente.calle = ""
+      this.Paciente.colonia = ""
+      this.Paciente.codigopostal = ""
+      this.Paciente.telefono = ""
+      this.Paciente.correo = ""
+      this.Paciente.alergia = ""
+    },
+
 
     notifyVue(verticalAlign, horizontalAlign, mensaje, color) {
       this.$notifications.notify({

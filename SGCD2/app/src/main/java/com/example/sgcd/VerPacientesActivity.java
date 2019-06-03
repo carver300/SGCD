@@ -23,6 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.example.sgcd.Model.Post;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +33,13 @@ import com.example.sgcd.Model.Paciente;
 public class VerPacientesActivity extends AppCompatActivity {
 
 
-    TextView jsonText;
+
+    List<Paciente> postList2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_pacientes);
-
-        jsonText = findViewById(R.id.jsontext);
 
         getPosts();
 
@@ -48,6 +48,9 @@ public class VerPacientesActivity extends AppCompatActivity {
 
 
     private void getPosts(){
+
+
+
         Retrofit  retrofit = new Retrofit.Builder()
                 .baseUrl("https://SGCD.azurewebsites.net/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -61,32 +64,17 @@ public class VerPacientesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Paciente>> call, Response<List<Paciente>> response) {
                 if(!response.isSuccessful()){
-                    jsonText.setText("Codigo: "+response.code());
+
                 }
 
                 List<Paciente> postList = response.body();
 
-                for(Paciente post: postList){
-                    String content = "";
-                    content += "ID Paciente"+ post.getId_paciente() +"\n";
-                    content += "Nombre"+ post.getNombre()+"\n";
-                    content += "ApePaterno"+ post.getApepaterno()+"\n";
-                    content += "ApeMaterno"+ post.getApematerno()+"\n";
-                    content += "Edad"+ post.getEdad()+"\n";
-                    content += "Alergia"+ post.getAlergia()+"\n";
-                    content += "Calle"+ post.getCalle()+"\n";
-                    content += "Colonia"+ post.getColonia()+"\n";
-                    content += "CodPOstal"+ post.getCodigopostal()+"\n";
-                    content += "Telefono"+ post.getTelefono()+"\n";
-                    content += "Correo"+ post.getCorreo()+"\n";
 
-                    jsonText.append(content);
-                }
             }
 
             @Override
             public void onFailure(Call<List<Paciente>> call, Throwable t) {
-                jsonText.setText(t.getMessage());
+
             }
         });
     }

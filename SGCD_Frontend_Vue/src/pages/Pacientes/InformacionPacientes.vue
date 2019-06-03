@@ -251,7 +251,7 @@ export default {
     },
     methods:{
         llenarTablaPacientes(){
-            axios.get('https://SGCD.azurewebsites.net/api/paciente/VerPacientes')
+            axios.get('http://178.128.13.15:8000/api/paciente/VerPacientes')
             .then(response =>{
                 this.tableData = response.data
             }).catch(error => {
@@ -266,7 +266,7 @@ export default {
         },
 
         editarInformacion(){
-            axios.post('https://SGCD.azurewebsites.net/api/paciente/ActualizarPaciente',this.objetoPaciente)
+            axios.post('http://178.128.13.15:8000/api/paciente/ActualizarPaciente',this.objetoPaciente)
             .then(response =>{
                 this.notifyVue('top','center','Se edito la informacion del paciente','success')
                 this.actualizarRowTable()
@@ -308,8 +308,7 @@ export default {
         eliminarPaciente(row){
             this.index = this.tableData.indexOf(row)
             this.objetoPaciente = Object.assign({}, row)
-            alert(this.objetoPaciente.id_paciente)
-            axios.get('https://SGCD.azurewebsites.net/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
+            axios.get('http://178.128.13.15:8000/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
             )
             .then(response => {
                 this.tableData.splice(this.index, 1)
@@ -320,16 +319,28 @@ export default {
         },
 
         buscarPaciente(){
-            axios.get('https://SGCD.azurewebsites.net/api/paciente/PacientePorId/'+this.id_paciente)
-            .then(response => {
-                alert('hola')
-                this.tableData = []
-                this.objetoPaciente = response.data      
-                this.tableData.push(this.objetoPaciente)
-            })
-            .catch(error => {
-                this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
-            })
+
+            if(this.id_paciente != "" || this.id_paciente > 0){
+                axios.get('http://178.128.13.15:8000/api/paciente/PacientePorId/'+this.id_paciente)
+                .then(response => {
+
+                if(response.data != -1){
+                    this.tableData = []
+                    this.objetoPaciente = response.data      
+                    this.tableData.push(this.objetoPaciente)
+                }else{
+                    this.tableData = []
+                    this.notifyVue('top','center','No existe el paciente proporcionado','warning')
+                }
+
+                })
+                .catch(error => {
+                    this.notifyVue('top','center','Hubo un error al obtener la informacion, favor de reportarlo con el administrador','danger')
+                })
+            }
+            else{
+                this.notifyVue('top','center','No haz proporcionado un numero de paciente valido','warning')
+            }
         },
     }
 }

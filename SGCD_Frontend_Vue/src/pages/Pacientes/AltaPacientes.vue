@@ -164,7 +164,7 @@ const axios = require('axios');
         },
 
         registrarPaciente () {
-           axios.post('https://SGCD.azurewebsites.net/api/Paciente/InsertarPaciente',this.paciente
+           axios.post('http://178.128.13.15:8000/api/Paciente/InsertarPaciente',this.paciente
            ).then(response => {
                 this.notifyVue('top','center','Registro Exitoso','success')
                 this.limpiarCampos()

@@ -36,13 +36,6 @@
                   <td>{{row.nombre}}</td>
                   <td>{{row.apepaterno}}</td>
                   <td>{{row.apematerno}}</td>
-                    <button class="btn btn-icon btn-info" @click="cargarDatosModal(row)">
-                      <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn btn-icon btn-danger" @click="eliminarPaciente(row)">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                  </td>
                 </template>
               </l-table>
             </div>

@@ -102,7 +102,7 @@
                   </div>
                 </div>
                 <div class="col-xl-3 pt-4 d-flex flex-wrap align-content-center">
-                  <button class="btn btn-fill btn-info">Finalizar Cita</button>
+                  <button @click="actualizarCita()" class="btn btn-fill btn-info">Finalizar Cita</button>
                 </div>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default {
     traerInformacionCita() {
       axios
         .get(
-          "https://SGCD.azurewebsites.net/api/Cita/CitaPorId/" + this.FolioCita
+          "http://178.128.13.15:8000/api/Cita/CitaPorId/" + this.FolioCita
         )
         .then(response => {
           if (response.data != -1) {
@@ -163,11 +163,10 @@ export default {
     },
 
     buscarInformacionPaciente() {
-      alert(this.Cita.id_paciente)
       if (this.Cita.id_paciente > 0 && this.Cita.id_paciente != "") {
         axios
           .get(
-            "https://SGCD.azurewebsites.net/api/paciente/PacientePorID/" +
+            "http://178.128.13.15:8000/api/paciente/PacientePorID/" +
               this.Cita.id_paciente
           )
           .then(response => {
@@ -179,7 +178,32 @@ export default {
           });
       } else {
       }
+    },
+
+    actualizarCita(){
+        axios
+          .post(
+            "http://178.128.13.15:8000/api/Cita/ActualizarCita", this.Cita
+          )
+          .then(response => {
+            if (response.data != -1) {
+              this.notifyVue('top','center','Registro Exitoso','success')
+            }
+          })
+          .catch(error => {
+          });
+      },
+
+      notifyVue (verticalAlign, horizontalAlign,mensaje,color) {
+            this.$notifications.notify(
+            {
+                message: mensaje,
+                icon: 'nc-icon nc-app',
+                horizontalAlign: horizontalAlign,
+                verticalAlign: verticalAlign,
+                type: color
+            })
+        },
     }
   }
-};
 </script>

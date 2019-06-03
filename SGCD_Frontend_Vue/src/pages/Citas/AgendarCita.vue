@@ -334,7 +334,7 @@ export default {
       if (this.id_paciente > 0) {
         axios
           .get(
-            "https://SGCD.azurewebsites.net/api/Paciente/PacientePorId/" +
+            "http://178.128.13.15:8000/api/Paciente/PacientePorId/" +
               this.id_paciente
           )
           .then(response => {
@@ -384,7 +384,7 @@ export default {
 
     cargarServicios() {
       axios
-        .get("https://SGCD.azurewebsites.net/api/servicio/VerServicios")
+        .get("http://178.128.13.15:8000/api/servicio/VerServicios")
         .then(response => {
           this.servicios = response.data;
         })
@@ -406,7 +406,7 @@ export default {
       this.llenarObjetoCita();
       axios
         .post(
-          "https://SGCD.azurewebsites.net/api/cita/InsertarCita",
+          "http://178.128.13.15:8000/api/Cita/InsertarCita",
           this.objetoCita
         )
         .then(response => {
