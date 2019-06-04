@@ -151,7 +151,7 @@ export default {
       if(this.FolioCita != "" && this.FolioCita > 0){
         axios
         .get(
-          "http://178.128.13.15:8000/api/Cita/CitaPorId/" + this.FolioCita
+          "http://178.128.13.15:8001/api/Cita/CitaPorId/" + this.FolioCita
         )
         .then(response => {
           if (response.data != -1) {
@@ -174,7 +174,7 @@ export default {
       if (this.Cita.id_paciente > 0 && this.Cita.id_paciente != "") {
         axios
           .get(
-            "http://178.128.13.15:8000/api/paciente/PacientePorID/" +
+            "http://178.128.13.15:8001/api/paciente/PacientePorID/" +
               this.Cita.id_paciente
           )
           .then(response => {
@@ -191,7 +191,7 @@ export default {
     actualizarCita(){
         axios
           .get(
-            "http://178.128.13.15:8000/api/Cita/ActualizarObservacionesCita/" + this.FolioCita+"&"+this.Cita.observaciones
+            "http://178.128.13.15:8001/api/Cita/ActualizarObservacionesCita/" + this.FolioCita+"&"+this.Cita.observaciones
           ) 
           .then(response => {
             if (response.data != -1) {

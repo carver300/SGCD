@@ -8,7 +8,7 @@
         <form class="col-12">
           <div class="form-group">
             <h6 class="text-left">Correo</h6>
-            <input type="text" class="form-control" placeholder="Correo" v-model="Cita.usuario">
+            <input type="text" class="form-control" placeholder="Correo" v-model="User.usuario">
           </div>
           <div class="form-group">
             <h6 class="text-left">Contraseña</h6>
@@ -16,7 +16,7 @@
               type="password"
               class="form-control"
               placeholder="Contraseña"
-              v-model="Cita.contra"
+              v-model="User.contra"
             >
           </div>
           <button
@@ -68,7 +68,7 @@ export default {
   name: "Login",
   data() {
     return {
-      Cita: {
+      User: {
         usuario: "",
         contra: ""
       }
@@ -77,13 +77,14 @@ export default {
   methods: {
     validarUsuario() {
       axios
-        .post(
-          "https://SGCD.azurewebsites.net/api/usuario/IniciarSesion",
-          this.Cita
-        )
+        .post("http://178.128.13.15:8001/api/usuario/IniciarSesion", this.User)
         .then(response => {
-          localStorage.setItem("tipoUsuario", response.data);
-          this.avanzarPaginaPrincipal();
+          if (response.data != -1) {
+            localStorage.setItem("tipoUsuario", response.data);
+            this.avanzarPaginaPrincipal();
+          } else {
+            this.notifyVue("top", "center", "Usuario o cantraseña incorrectos", "warning");
+          }
         })
         .catch(error => {
           this.notifyVue(
@@ -96,7 +97,18 @@ export default {
     },
     avanzarPaginaPrincipal() {
       this.$router.push("SGCD");
-    }
+    },
+
+    notifyVue (verticalAlign, horizontalAlign,mensaje,color) {
+            this.$notifications.notify(
+            {
+                message: mensaje,
+                icon: 'nc-icon nc-app',
+                horizontalAlign: horizontalAlign,
+                verticalAlign: verticalAlign,
+                type: color
+            })
+        },
   }
 };
 </script>

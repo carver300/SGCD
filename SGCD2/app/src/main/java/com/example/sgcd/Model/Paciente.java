@@ -135,4 +135,8 @@ public class Paciente {
         this.correo = correo;
         this.alergia = alergia;
     }
+
+    public Paciente(){
+
+    }
 }

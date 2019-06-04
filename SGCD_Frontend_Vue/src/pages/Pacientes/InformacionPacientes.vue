@@ -251,7 +251,7 @@ export default {
     },
     methods:{
         llenarTablaPacientes(){
-            axios.get('http://178.128.13.15:8000/api/paciente/VerPacientes')
+            axios.get('http://178.128.13.15:8001/api/paciente/VerPacientes')
             .then(response =>{
                 this.tableData = response.data
             }).catch(error => {
@@ -266,7 +266,7 @@ export default {
         },
 
         editarInformacion(){
-            axios.post('http://178.128.13.15:8000/api/paciente/ActualizarPaciente',this.objetoPaciente)
+            axios.post('http://178.128.13.15:8001/api/paciente/ActualizarPaciente',this.objetoPaciente)
             .then(response =>{
                 this.notifyVue('top','center','Se edito la informacion del paciente','success')
                 this.actualizarRowTable()
@@ -308,7 +308,7 @@ export default {
         eliminarPaciente(row){
             this.index = this.tableData.indexOf(row)
             this.objetoPaciente = Object.assign({}, row)
-            axios.get('http://178.128.13.15:8000/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
+            axios.get('http://178.128.13.15:8001/api/paciente/EliminarPaciente/'+this.objetoPaciente.id_paciente
             )
             .then(response => {
                 this.tableData.splice(this.index, 1)
@@ -321,7 +321,7 @@ export default {
         buscarPaciente(){
 
             if(this.id_paciente != "" || this.id_paciente > 0){
-                axios.get('http://178.128.13.15:8000/api/paciente/PacientePorId/'+this.id_paciente)
+                axios.get('http://178.128.13.15:8001/api/paciente/PacientePorId/'+this.id_paciente)
                 .then(response => {
 
                 if(response.data != -1){

@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         progress.show();
 
         Retrofit  retrofit = new Retrofit.Builder()
-                .baseUrl("https://SGCD.azurewebsites.net/api/")
+                .baseUrl("http://178.128.13.15:8001/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         SGCDAPI sgcd = retrofit.create(SGCDAPI.class);

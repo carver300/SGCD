@@ -81,7 +81,6 @@
                         <td>{{row.id_servicio}}</td>
                         <td>{{row.fecha}}</td>
                         <td>{{row.hora}}</td>
-                        <td>{{row.estatus}}</td>
                         <td>{{row.observaciones}}</td>
                       </template>
                     </l-table>
@@ -142,7 +141,7 @@ export default {
       if (this.idPaciente > 0 && this.idPaciente != "") {
         axios
           .get(
-            "http://178.128.13.15:8000/api/paciente/PacientePorID/" +
+            "http://178.128.13.15:8001/api/paciente/PacientePorID/" +
               this.idPaciente
           )
           .then(response => {
@@ -179,18 +178,19 @@ export default {
     obtenerHistorialCitas() {
       axios
         .get(
-          "http://178.128.13.15:8000/api/Cita/HistorialPorPaciente/" +
+          "http://178.128.13.15:8001/api/Cita/HistorialPorPaciente/" +
             this.idPaciente
         )
         .then(response => {
 
-          if(response.data != -1){
+          if(!response.data.includes("No se")){
             this.tableData = response.data;
           }else{
+            this.tableData = null;
             this.notifyVue(
             "top",
             "center",
-            "No se encontraron citas para este paciente",
+            "El paciente no ha registrado citas",
             "info"
             );
           }

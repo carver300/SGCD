@@ -86,9 +86,6 @@
               <div class="col-xl-3">
                 <base-input v-model="servicios[serv].precio" label="Precio"></base-input>
               </div>
-              <div class="col-xl-2">
-                <base-input v-model="servicios[serv].tiempoestimado" label="Duracion"></base-input>
-              </div>
             </div>
             <div v-if="Paciente.id_paciente != ''" class="row">
               <div class="col-xl-3">
@@ -108,115 +105,48 @@
                 <button
                   type="submit"
                   class="btn btn-fill btn-success"
-                  @click="abrirModalCobrar()"
-                >Cobrar</button>
+                  @click="agendarCita()"
+                >Agendar</button>
               </div>
             </div>
           </card>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-2">
-        <div v-if="showModal">
-          <transition name="modal">
-            <div class="modal-mask">
-              <div class="modal-wrapper">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <div class="row justify-content-center">
-                        <div class="col-xl-12">
-                          <h3>Editar Informacion</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body">
-                      <div class="row">
-                        <div class="col-xl-3">
-                          <base-input
-                            type="text"
-                            label="Nombre"
-                            placeholder="Nombre del paciente"
-                            v-model="objetoPaciente.nombre"
-                          ></base-input>
-                        </div>
-                        <div class="col-xl-3">
-                          <base-input
-                            type="text"
-                            label="Apellido Paterno"
-                            placeholder="Primer apellido"
-                            v-model="objetoPaciente.apepaterno"
-                          ></base-input>
-                        </div>
-                        <div class="col-xl-3">
-                          <base-input
-                            type="text"
-                            label="Apellido Materno"
-                            placeholder="Segundo apellido"
-                            v-model="objetoPaciente.apematerno"
-                          ></base-input>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-xl-3">
-                          <base-input
-                            type="text"
-                            label="Sexo"
-                            placeholder="Sexo"
-                            v-model="objetoPaciente.sexo"
-                          ></base-input>
-                        </div>
-                        <div class="col-xl-3">
-                          <base-input type="text" label="Edad" v-model="objetoPaciente.edad"></base-input>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-xl-4">
-                          <div class="form-group">
-                            <label>Alergias</label>
-                            <textarea
-                              rows="3"
-                              class="form-control border-input"
-                              placeholder="Alergia a medicamentos"
-                              v-model="objetoPaciente.alergia"
-                            ></textarea>
+      <div class="row">
+        <div class="col-xl-1">
+          <div v-if="showModal">
+            <transition name="modal fade">
+              <div class="modal-mask">
+                <div class="modal-wrapper">
+                  <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="row justify-content-center">
+                          <div class="col-xl-12">
+                            <h3>Folio Cita Generado</h3>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-xl-3">
-                          <base-input type="text" label="Calle" v-model="objetoPaciente.calle"></base-input>
-                        </div>
-                        <div class="col-xl-3">
-                          <base-input type="text" label="Colonia" v-model="objetoPaciente.colonia"></base-input>
-                        </div>
-                        <div class="col-xl-3">
-                          <base-input
-                            type="number"
-                            label="Codigo Postal"
-                            v-model="objetoPaciente.codigopostal"
-                          ></base-input>
+                      <div class="modal-body">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-12">
+                              <h4>{{Cita.folio}}</h4>
+                            </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="submit"
-                        class="btn btn-info btn-fill float-right"
-                        @click="showModal = false"
-                      >Cerrar</button>
-                      <button
-                        type="submit"
-                        class="btn btn-success btn-fill float-right"
-                        @click="editarInformacion()"
-                      >Editar</button>
+                      <div class="modal-footer">
+                        <div class="row">
+                          <div class="col-xl-12">
+                            <button @click="showModal = false" class="btn btn-fill btn-info">Cerrar</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </transition>
+            </transition>
+          </div>
         </div>
       </div>
     </div>
@@ -297,10 +227,9 @@ export default {
         id_servicio: "",
         nombre: "",
         descripcion: "",
-        precio: "",
-        tiempoestimado: ""
+        precio: ""
       },
-      showModal: false,
+      showModal:false,
       serv: 1,
       hor: 1,
       opcion: "",
@@ -334,7 +263,7 @@ export default {
       if (this.id_paciente > 0) {
         axios
           .get(
-            "http://178.128.13.15:8000/api/Paciente/PacientePorId/" +
+            "http://178.128.13.15:8001/api/Paciente/PacientePorId/" +
               this.id_paciente
           )
           .then(response => {
@@ -368,10 +297,6 @@ export default {
       }
     },
 
-    generarFolio() {
-      this.folioCita = 1;
-    },
-
     notifyVue(verticalAlign, horizontalAlign, mensaje, color) {
       this.$notifications.notify({
         message: mensaje,
@@ -384,7 +309,7 @@ export default {
 
     cargarServicios() {
       axios
-        .get("http://178.128.13.15:8000/api/servicio/VerServicios")
+        .get("http://178.128.13.15:8001/api/servicio/VerServicios")
         .then(response => {
           this.servicios = response.data;
         })
@@ -406,12 +331,22 @@ export default {
       this.llenarObjetoCita();
       axios
         .post(
-          "http://178.128.13.15:8000/api/Cita/InsertarCita",
+          "http://178.128.13.15:8001/api/Cita/InsertarCita",
           this.objetoCita
         )
         .then(response => {
-          alert("asasas");
-          this.notifyVue("top", "center", "Agendado", "success");
+          if (response.data == 2) {
+            this.notifyVue(
+              "top",
+              "center",
+              "El paciente ya cuenta con una cita registrada para ese dia",
+              "warning"
+            );
+          } else {
+            this.showModal = true
+            this.Cita.folio = response.data
+
+          }
         })
         .catch(error => {
           this.notifyVue("top", "center", "Error", "danger");
@@ -422,6 +357,21 @@ export default {
       this.objetoCita.id_paciente = this.Paciente.id_paciente;
       this.objetoCita.id_servicio = this.servicios[this.serv].id_servicio;
       this.objetoCita.hora = this.horasservicio[this.hor].hora;
+    },
+
+    limpiarDatos() {
+      this.objetoPaciente.id_paciente = "";
+      this.objetoPaciente.nombre = "";
+      this.objetoPaciente.apepaterno = "";
+      this.objetoPaciente.apematerno = "";
+      this.objetoPaciente.sexo = "";
+      this.objetoPaciente.edad = "";
+      this.objetoPaciente.calle = "";
+      this.objetoPaciente.colonia = "";
+      this.objetoPaciente.codigopostal = "";
+      this.objetoPaciente.telefono = "";
+      this.objetoPaciente.correo = "";
+      this.objetoPaciente.alergia = "";
     }
   }
 };

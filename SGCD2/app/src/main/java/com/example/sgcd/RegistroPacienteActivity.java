@@ -59,7 +59,6 @@ public class RegistroPacienteActivity extends AppCompatActivity {
         editCodpostal = findViewById(R.id.editCodPostal);
         editTelefono = findViewById(R.id.editTelefono);
         editCorreo = findViewById(R.id.editCorreo);
-        ej = findViewById(R.id.ejemplo);
 
         progress = new ProgressDialog(RegistroPacienteActivity.this);
 
@@ -125,7 +124,7 @@ public class RegistroPacienteActivity extends AppCompatActivity {
         progress.setMessage("Espere un momento");
         progress.show();
         Retrofit  retrofit = new Retrofit.Builder()
-                .baseUrl("https://SGCD.azurewebsites.net/api/")
+                .baseUrl("http://178.128.13.15:8001/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         SGCDAPI sgcd = retrofit.create(SGCDAPI.class);

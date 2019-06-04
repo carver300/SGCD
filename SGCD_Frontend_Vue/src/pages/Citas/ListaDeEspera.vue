@@ -75,7 +75,7 @@ export default {
   },
   methods:{
     llenarListaDelDia(){
-            axios.get('https://SGCD.azurewebsites.net/api/ListaEspera/ListaDelDia')
+            axios.get('http://178.128.13.15:8001/api/ListaEspera/ListaDelDia')
             .then(response =>{
                 this.tableData = response.data
             }).catch(error => {

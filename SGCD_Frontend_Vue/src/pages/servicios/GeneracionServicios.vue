@@ -28,9 +28,6 @@
               <div class="col-xl-2">
                 <base-input type="text" label="Precio" v-model="servicio.precio"></base-input>
               </div>
-              <div class="col-xl-2">
-                <base-input type="text" label="Duracion estimada" v-model="servicio.tiempoestimado"></base-input>
-              </div>
             </div>
             <div class="row">
               <div class="col-xl-12">
@@ -52,7 +49,7 @@
               <p class="category">Detalle de servicios</p>
               <div class="row">
                 <div class="col-xl-6 pt-2">
-                  <h6 class="pb-2">Ultimos 15 servicios</h6>
+                  <h6 class="pb-2">Recargar</h6>
                   <button
                     type="submit"
                     class="btn btn-info btn-fill"
@@ -79,7 +76,6 @@
                 <td>{{row.nombre}}</td>
                 <td>{{row.descripcion}}</td>
                 <td>{{row.precio}}</td>
-                <td>{{row.tiempoestimado}}</td>
                 <td>
                   <button class="btn btn-icon btn-info" @click="cargarDatosModal(row)">
                     <i class="fa fa-edit"></i>
@@ -112,50 +108,55 @@ export default {
       servicio: {
         nombre: "",
         descripcion: "",
-        precio: "",
-        tiempoestimado: ""
+        precio: ""
       },
-      tableColumns: [
-        "Id",
-        "Nombre",
-        "Descripcion",
-        "Precio",
-        "Duracion",
-        "Acciones"
-      ],
+      tableColumns: ["Id", "Nombre", "Descripcion", "Precio", "Acciones"],
       tableData: [],
       idServicio: "",
       servicio2: {
         nombre: "",
         descripcion: "",
-        precio: "",
-        tiempoestimado: ""
+        precio: ""
       }
     };
   },
   methods: {
     guardarServicio() {
-      axios
-        .post(
-          "https://SGCD.azurewebsites.net/api/servicio/AgregarServicio",
-          this.servicio
-        )
-        .then(response => {
-          this.notifyVue("top", "center", "Servicio registrado", "success");
-        })
-        .catch(error => {
-          this.notifyVue(
-            "top",
-            "center",
-            "Se detecto un problema al guardar el servicio",
-            "danger"
-          );
-        });
+      if (
+        this.servicio.nombre != "" &&
+        this.servicio.descripcion != "" &&
+        this.servicio.precio != ""
+      ) {
+        axios
+          .post(
+            "http://178.128.13.15:8001/api/servicio/AgregarServicio",
+            this.servicio
+          )
+          .then(response => {
+            this.notifyVue("top", "center", "Servicio registrado", "success");
+            this.limpiarDatos();
+          })
+          .catch(error => {
+            this.notifyVue(
+              "top",
+              "center",
+              "Se detecto un problema al guardar el servicio",
+              "danger"
+            );
+          });
+      } else {
+        this.notifyVue(
+          "top",
+          "center",
+          "Favor de validar los datos del servicio",
+          "warning"
+        );
+      }
     },
 
     cargarServicios() {
       axios
-        .get("https://SGCD.azurewebsites.net/api/servicio/VerServicios")
+        .get("http://178.128.13.15:8001/api/servicio/VerServicios")
         .then(response => {
           this.tableData = response.data;
         })
@@ -170,24 +171,33 @@ export default {
     },
 
     buscarServicio() {
-      axios
-        .get(
-          "https://SGCD.azurewebsites.net/api/servicio/ServicioPorId/" +
-            this.idServicio
-        )
-        .then(response => {
-          this.tableData = [];
-          this.servicio2 = response.data;
-          this.tableData.push(this.servicio2);
-        })
-        .catch(error => {
-          this.notifyVue(
-            "top",
-            "center",
-            "Hubo un error al obtener la informacion, favor de reportarlo con el administrador",
-            "danger"
-          );
-        });
+      if (this.idServicio != "" && this.idServicio > 0) {
+        axios
+          .get(
+            "http://178.128.13.15:8001/api/servicio/ServicioPorId/" +
+              this.idServicio
+          )
+          .then(response => {
+            this.tableData = [];
+            this.servicio2 = response.data;
+            this.tableData.push(this.servicio2);
+          })
+          .catch(error => {
+            this.notifyVue(
+              "top",
+              "center",
+              "Hubo un error al obtener la informacion, favor de reportarlo con el administrador",
+              "danger"
+            );
+          });
+      } else {
+        this.notifyVue(
+              "top",
+              "center",
+              "El servicio proporcionado no es valido",
+              "warning"
+            );
+      }
     },
 
     notifyVue(verticalAlign, horizontalAlign, mensaje, color) {
@@ -198,6 +208,12 @@ export default {
         verticalAlign: verticalAlign,
         type: color
       });
+    },
+
+    limpiarDatos() {
+      this.servicio.nombre = "";
+      this.servicio.descripcion = "";
+      this.servicio.precio = "";
     }
   }
 };
